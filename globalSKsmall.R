@@ -1,4 +1,4 @@
-projectPath <- "~/spadesCBMpython"
+projectPath <- "~/spadesCBM"
 dir.create(projectPath, recursive = TRUE, showWarnings = FALSE)
 setwd(projectPath)
 
