@@ -1,7 +1,4 @@
-projectPath <- "~/spadesCBM"
-dir.create(projectPath, recursive = TRUE, showWarnings = FALSE)
-setwd(projectPath)
-
+projectPath <- "~/GitHub/spadesCBM"
 repos <- unique(c("predictiveecology.r-universe.dev", getOption("repos")))
 install.packages("SpaDES.project",
                  repos = repos)
@@ -32,7 +29,7 @@ out <- SpaDES.project::setupProject(
   require = c("SpaDES.core", "reticulate",
               "PredictiveEcology/libcbmr", "data.table"),
 
-  parameters = list(
+  params = list(
     CBM_defaults = list(
       .useCache = TRUE
     ),
