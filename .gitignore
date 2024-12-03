@@ -12,3 +12,9 @@ outputPath
 .RData
 .secret
 .secrets
+cache/
+
+inputs/
+
+outputs/
+
