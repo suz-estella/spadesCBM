@@ -94,7 +94,5 @@ out <- SpaDES.project::setupProject(
 
 )
 
-out$loadOrder <- unlist(out$modules)
-
 # Run
 simPython <- SpaDES.core::simInitAndSpades2(out)
