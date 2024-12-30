@@ -28,8 +28,8 @@ test_that("SK 1998-2000 with AOI", {
 
     SpaDES.project::setupProject(
 
-      times   = times,
       modules = moduleRepos[c("CBM_defaults", "CBM_dataPrep_SK", "CBM_vol2biomass", "CBM_core")],
+      times   = times,
       paths   = list(
         projectPath = file.path(testDirs$temp$projects, "SK_1998-2000_withAOI")
       ),
