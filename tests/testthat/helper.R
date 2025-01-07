@@ -37,12 +37,24 @@
       message = function(c) tryInvokeRestart("muffleMessage"),
       packageStartupMessage = function(c) tryInvokeRestart("muffleMessage"),
       warning = function(w){
-        if (grepl("^package ['\u2018]{1}[a-zA-Z0-9.]+['\u2019]{1} was built under R version [0-9.]+$", w$message)){
+        if (getOption("spadesCBM.test.suppressWarnings", default = FALSE)){
           tryInvokeRestart("muffleWarning")
+        }else{
+          if (grepl("^package ['\u2018]{1}[a-zA-Z0-9.]+['\u2019]{1} was built under R version [0-9.]+$", w$message)){
+            tryInvokeRestart("muffleWarning")
+          }
         }
       }
     )
 
   }else expr
 }
+
+# Helper function: get or set default module locations
+.moduleLocations <- function() c(
+  CBM_core        = getOption("spadesCBM.test.module.CBM_core",        default = "PredictiveEcology/CBM_core@main"),
+  CBM_defaults    = getOption("spadesCBM.test.module.CBM_defaults",    default = "PredictiveEcology/CBM_defaults@main"),
+  CBM_vol2biomass = getOption("spadesCBM.test.module.CBM_vol2biomass", default = "PredictiveEcology/CBM_vol2biomass@main"),
+  CBM_dataPrep_SK = getOption("spadesCBM.test.module.CBM_dataPrep_SK", default = "PredictiveEcology/CBM_dataPrep_SK@main")
+)
 

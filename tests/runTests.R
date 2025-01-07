@@ -8,16 +8,26 @@
     type = "binary",
     repos = unique(c("predictiveecology.r-universe.dev", getOption("repos"))))
 
-  # Cache Google Drive authorization
-  ## Set authorization email and cache location
-  options(
-    gargle_oauth_email = "", ## Set personal email
-    gargle_oauth_cache = "~/googledrive_oauth_cache"
-  )
+  # Authorize Google Drive
   googledrive::drive_auth()
 
-  # Set location of input data (optional)
-  # options("reproducible.inputPaths" = "~/data")
+
+## OPTIONAL: SET TEST OPTIONS ----
+
+  # Set custom module locations
+  options("spadesCBM.test.module.CBM_core"        = "PredictiveEcology/CBM_core@main")
+  options("spadesCBM.test.module.CBM_defaults"    = "PredictiveEcology/CBM_defaults@main")
+  options("spadesCBM.test.module.CBM_vol2biomass" = "PredictiveEcology/CBM_vol2biomass@main")
+  options("spadesCBM.test.module.CBM_dataPrep_SK" = "PredictiveEcology/CBM_dataPrep_SK@main")
+
+  # Set custom input data location
+  options("reproducible.inputPaths" = NULL)
+
+  # Skip recreating the Python virtual environment
+  options("spadesCBM.test.virtualEnv" = FALSE)
+
+  # Suppress warnings from calls to setupProject, simInit, and spades
+  options("spadesCBM.test.suppressWarnings" = TRUE)
 
 
 ## RUN ALL TESTS ----

@@ -5,14 +5,6 @@ test_that("SK 1998-2000 with AOI", {
 
   ## Run simInit and spades ----
 
-  # Set module locations
-  moduleRepos <- c(
-    CBM_core        = "PredictiveEcology/CBM_core@main",
-    CBM_defaults    = "PredictiveEcology/CBM_defaults@main",
-    CBM_vol2biomass = "PredictiveEcology/CBM_vol2biomass@main",
-    CBM_dataPrep_SK = "PredictiveEcology/CBM_dataPrep_SK@main"
-  )
-
   # Set times
   times <- list(start = 1998, end = 2000)
 
@@ -28,7 +20,7 @@ test_that("SK 1998-2000 with AOI", {
 
     SpaDES.project::setupProject(
 
-      modules = moduleRepos[c("CBM_defaults", "CBM_dataPrep_SK", "CBM_vol2biomass", "CBM_core")],
+      modules = .moduleLocations()[c("CBM_defaults", "CBM_dataPrep_SK", "CBM_vol2biomass", "CBM_core")],
       times   = times,
       paths   = list(
         projectPath = file.path(testDirs$temp$projects, "SK_1998-2000_withAOI")
@@ -39,7 +31,7 @@ test_that("SK 1998-2000 with AOI", {
       require = c("testthat",
                   "reticulate", "PredictiveEcology/libcbmr", "data.table"),
 
-      functions = file.path(moduleRepos[["CBM_core"]], "R/ReticulateFindPython.R"),
+      functions = file.path(.moduleLocations()[["CBM_core"]], "R/ReticulateFindPython.R"),
       ret = {
 
         reticulate::virtualenv_create(

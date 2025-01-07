@@ -38,8 +38,10 @@ if (testthat::is_testing()) withr::local_options(list(Require.verbose = -2), .lo
 withr::local_options(list(SpaDES.project.updateRprofile = FALSE), .local_envir = teardownEnv)
 
 # Set Python virtual environment location within temporary directory
-dir.create(file.path(testDirs$temp$root, "virtualenvs"))
-withr::local_envvar(
-  list(RETICULATE_VIRTUALENV_ROOT = file.path(testDirs$temp$root, "virtualenvs")),
-  .local_envir = teardownEnv)
+if (getOption("spadesCBM.test.virtualEnv", default = TRUE)){
+  dir.create(file.path(testDirs$temp$root, "virtualenvs"))
+  withr::local_envvar(
+    list(RETICULATE_VIRTUALENV_ROOT = file.path(testDirs$temp$root, "virtualenvs")),
+    .local_envir = teardownEnv)
+}
 
