@@ -27,7 +27,8 @@ test_that("SK 1998-2000 with AOI", {
       modules = .moduleLocations()[c("CBM_defaults", "CBM_dataPrep_SK", "CBM_vol2biomass", "CBM_core")],
       times   = times,
       paths   = list(
-        projectPath = file.path(testDirs$temp$projects, "SK_1998-2000_withAOI")
+        projectPath = file.path(testDirs$temp$projects, "SK_1998-2000_withAOI"),
+        inputPath   = testDirs$temp$inputs
       ),
 
       params = list(), # TODO: Required?
