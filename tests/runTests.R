@@ -15,10 +15,10 @@
 ## OPTIONAL: SET TEST OPTIONS ----
 
   # Set custom module locations
-  options("spadesCBM.test.module.CBM_core"        = "PredictiveEcology/CBM_core@main")
-  options("spadesCBM.test.module.CBM_defaults"    = "PredictiveEcology/CBM_defaults@main")
-  options("spadesCBM.test.module.CBM_vol2biomass" = "PredictiveEcology/CBM_vol2biomass@main")
-  options("spadesCBM.test.module.CBM_dataPrep_SK" = "PredictiveEcology/CBM_dataPrep_SK@main")
+  options("spadesCBM.test.module.CBM_core"        = "PredictiveEcology/CBM_core@development")
+  options("spadesCBM.test.module.CBM_defaults"    = "PredictiveEcology/CBM_defaults@development")
+  options("spadesCBM.test.module.CBM_vol2biomass" = "PredictiveEcology/CBM_vol2biomass@development")
+  options("spadesCBM.test.module.CBM_dataPrep_SK" = "PredictiveEcology/CBM_dataPrep_SK@development")
 
   # Set custom input data location
   options("reproducible.inputPaths" = NULL)
