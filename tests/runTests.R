@@ -20,14 +20,14 @@
   options("spadesCBM.test.module.CBM_vol2biomass" = "PredictiveEcology/CBM_vol2biomass@development")
   options("spadesCBM.test.module.CBM_dataPrep_SK" = "PredictiveEcology/CBM_dataPrep_SK@development")
 
-  # Set custom input data location
-  options("reproducible.inputPaths" = NULL)
-
   # Skip recreating the Python virtual environment
   options("spadesCBM.test.virtualEnv" = FALSE)
 
   # Suppress warnings from calls to setupProject, simInit, and spades
   options("spadesCBM.test.suppressWarnings" = TRUE)
+
+  # Set custom input data location
+  options("reproducible.inputPaths" = NULL)
 
 
 ## RUN ALL TESTS ----
