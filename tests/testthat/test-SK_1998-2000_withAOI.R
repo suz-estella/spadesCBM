@@ -1,4 +1,8 @@
 
+## This test was created based on globalSKsmall.R on 2025-01-07.
+## Times: 1998 - 2000
+## Study area: xmin = -687696, xmax = -681036, ymin = 711955, ymax = 716183
+
 if (!testthat::is_testing()) source(testthat::test_path("setup.R"))
 
 test_that("SK 1998-2000 with AOI", {
