@@ -81,10 +81,8 @@ out <- SpaDES.project::setupProject(
     mr[mr[] == 0] <- NA
     mr
   },
-  ## Give the location of the disturbance rasters.
-  disturbanceRasters = "https://drive.google.com/file/d/12YnuQYytjcBej0_kdodLchPg7z9LygCt/view?usp=drive_link",
 
-  # Restart = getOption("SpaDES.project.Restart", FALSE),
+  disturbanceRastersURL = "https://drive.google.com/file/d/12YnuQYytjcBej0_kdodLchPg7z9LygCt",
 
   outputs = as.data.frame(expand.grid(objectName = c("cbmPools", "NPP"),
                                       saveTime = sort(c(times$start,

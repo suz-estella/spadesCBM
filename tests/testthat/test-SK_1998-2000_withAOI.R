@@ -76,7 +76,7 @@ test_that("SK 1998-2000 with AOI", {
         mr
       },
 
-      disturbanceRasters = "https://drive.google.com/file/d/12YnuQYytjcBej0_kdodLchPg7z9LygCt/view?usp=drive_link",
+      disturbanceRastersURL = "https://drive.google.com/file/d/12YnuQYytjcBej0_kdodLchPg7z9LygCt",
 
       outputs = as.data.frame(expand.grid(
         objectName = c("cbmPools", "NPP"),
