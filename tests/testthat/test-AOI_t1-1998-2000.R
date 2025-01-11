@@ -70,7 +70,7 @@ test_that("1998-2000 with AOI", {
         masterRaster[] <- rep(1, terra::ncell(masterRaster))
         mr <- reproducible::prepInputs(
           destinationPath = testDirs$temp$inputs,
-          url        = "https://drive.google.com/file/d/1zUyFH8k6Ef4c_GiWMInKbwAl6m6gvLJW/view?usp=drive_link",
+          url        = "https://drive.google.com/file/d/1zUyFH8k6Ef4c_GiWMInKbwAl6m6gvLJW",
           targetFile = "ldSp_TestArea.tif",
           to         = masterRaster,
           method     = "near"
@@ -79,7 +79,7 @@ test_that("1998-2000 with AOI", {
         mr
       },
 
-      disturbanceRasters = "https://drive.google.com/file/d/12YnuQYytjcBej0_kdodLchPg7z9LygCt",
+      disturbanceRastersURL = "https://drive.google.com/file/d/12YnuQYytjcBej0_kdodLchPg7z9LygCt",
 
       outputs = as.data.frame(expand.grid(
         objectName = c("cbmPools", "NPP"),
