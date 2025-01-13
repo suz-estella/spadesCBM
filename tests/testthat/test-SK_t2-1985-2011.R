@@ -31,8 +31,6 @@ test_that("SK 1985-2011 all of SK", {
         inputPath   = testDirs$temp$inputs
       ),
 
-      params = list(), # TODO: Required?
-
       require = c("testthat",
                   "reticulate", "PredictiveEcology/libcbmr", "data.table"),
 

@@ -31,8 +31,6 @@ test_that("1985-2011 with AOI", {
         inputPath   = testDirs$temp$inputs
       ),
 
-      params = list(), # TODO: Required?
-
       require = c("testthat",
                   "reticulate", "PredictiveEcology/libcbmr", "data.table"),
 
