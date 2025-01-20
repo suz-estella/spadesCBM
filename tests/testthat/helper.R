@@ -51,10 +51,14 @@
 }
 
 # Helper function: get or set default module locations
-.moduleLocations <- function() c(
-  CBM_core        = getOption("spadesCBM.test.module.CBM_core",        default = "PredictiveEcology/CBM_core@main"),
-  CBM_defaults    = getOption("spadesCBM.test.module.CBM_defaults",    default = "PredictiveEcology/CBM_defaults@main"),
-  CBM_vol2biomass = getOption("spadesCBM.test.module.CBM_vol2biomass", default = "PredictiveEcology/CBM_vol2biomass@main"),
-  CBM_dataPrep_SK = getOption("spadesCBM.test.module.CBM_dataPrep_SK", default = "PredictiveEcology/CBM_dataPrep_SK@main")
-)
+.moduleLocations <- function(moduleNames){
+  sapply(setNames(moduleNames, moduleNames), function(moduleName){
+    ifelse(
+      is.null(getOption("spadesCBM.test.modulePath")),
+      getOption(paste0("spadesCBM.test.module.", moduleName),
+                default = paste0("PredictiveEcology", moduleName, "@main")),
+      moduleName
+    )
+  })
+}
 

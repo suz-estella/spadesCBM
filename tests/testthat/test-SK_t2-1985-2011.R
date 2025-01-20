@@ -24,17 +24,20 @@ test_that("SK 1985-2011 all of SK", {
 
     SpaDES.project::setupProject(
 
-      modules = .moduleLocations()[c("CBM_defaults", "CBM_dataPrep_SK", "CBM_vol2biomass", "CBM_core")],
+      modules = .moduleLocations(c("CBM_defaults", "CBM_dataPrep_SK", "CBM_vol2biomass", "CBM_core")),
       times   = times,
       paths   = list(
         projectPath = file.path(testDirs$temp$projects, "SK_1985-2011"),
-        inputPath   = testDirs$temp$inputs
+        inputPath   = testDirs$temp$inputs,
+        modulePath  = getOption("spadesCBM.test.modulePath")
       ),
 
       require = c("testthat",
                   "reticulate", "PredictiveEcology/libcbmr", "data.table"),
 
-      functions = file.path(.moduleLocations()[["CBM_core"]], "R/ReticulateFindPython.R"),
+      functions = paste(c(
+        getOption("spadesCBM.test.modulePath"), .moduleLocations("CBM_core"), "R/ReticulateFindPython.R"
+      ), collapse = "/"),
       ret = {
 
         reticulate::virtualenv_create(
