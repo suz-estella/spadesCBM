@@ -24,28 +24,29 @@ test_that("1985-2011 with AOI", {
 
     SpaDES.project::setupProject(
 
-      modules = .moduleLocations()[c("CBM_defaults", "CBM_dataPrep_SK", "CBM_vol2biomass", "CBM_core")],
+      modules = .moduleLocations(c("CBM_defaults", "CBM_dataPrep_SK", "CBM_vol2biomass", "CBM_core")),
       times   = times,
       paths   = list(
         projectPath = file.path(testDirs$temp$projects, "SK_1985-2011_withAOI"),
-        inputPath   = testDirs$temp$inputs
+        inputPath   = testDirs$temp$inputs,
+        modulePath  = getOption("spadesCBM.test.modulePath")
       ),
-
-      params = list(), # TODO: Required?
 
       require = c("testthat",
                   "reticulate", "PredictiveEcology/libcbmr", "data.table"),
 
-      functions = file.path(.moduleLocations()[["CBM_core"]], "R/ReticulateFindPython.R"),
+      functions = paste(c(
+        getOption("spadesCBM.test.modulePath"), .moduleLocations("CBM_core"), "R/ReticulateFindPython.R"
+      ), collapse = "/"),
       ret = {
 
         reticulate::virtualenv_create(
-          "r-spadesCBM-test",
-          python = if (!reticulate::virtualenv_exists("r-spadesCBM-test")){
+          "r-spadesCBM",
+          python = if (!reticulate::virtualenv_exists("r-spadesCBM")){
             ReticulateFindPython(
               version        = ">=3.9,<=3.12.7",
               versionInstall = "3.10:latest",
-              pyenvRoot      = tools::R_user_dir("r-spadesCBM-test")
+              pyenvRoot      = tools::R_user_dir("r-spadesCBM")
             )
           },
           packages = c(
@@ -60,7 +61,7 @@ test_that("1985-2011 with AOI", {
             "libcbm"
           )
         )
-        reticulate::use_virtualenv("r-spadesCBM-test")
+        reticulate::use_virtualenv("r-spadesCBM")
       },
 
       masterRaster = {

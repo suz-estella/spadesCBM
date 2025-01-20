@@ -14,11 +14,14 @@
 
 ## OPTIONAL: SET TEST OPTIONS ----
 
-  # Set custom module locations
+  # Set custom module locations: test custom repo branches
   options("spadesCBM.test.module.CBM_core"        = "PredictiveEcology/CBM_core@development")
   options("spadesCBM.test.module.CBM_defaults"    = "PredictiveEcology/CBM_defaults@development")
   options("spadesCBM.test.module.CBM_vol2biomass" = "PredictiveEcology/CBM_vol2biomass@development")
   options("spadesCBM.test.module.CBM_dataPrep_SK" = "PredictiveEcology/CBM_dataPrep_SK@development")
+
+  # Set custom module locations: test modules within a local directory
+  options("spadesCBM.test.modulePath" = NULL)
 
   # Skip recreating the Python virtual environment
   options("spadesCBM.test.virtualEnv" = FALSE)
