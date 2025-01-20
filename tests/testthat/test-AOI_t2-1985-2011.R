@@ -38,12 +38,12 @@ test_that("1985-2011 with AOI", {
       ret = {
 
         reticulate::virtualenv_create(
-          "r-spadesCBM-test",
-          python = if (!reticulate::virtualenv_exists("r-spadesCBM-test")){
+          "r-spadesCBM",
+          python = if (!reticulate::virtualenv_exists("r-spadesCBM")){
             ReticulateFindPython(
               version        = ">=3.9,<=3.12.7",
               versionInstall = "3.10:latest",
-              pyenvRoot      = tools::R_user_dir("r-spadesCBM-test")
+              pyenvRoot      = tools::R_user_dir("r-spadesCBM")
             )
           },
           packages = c(
@@ -58,7 +58,7 @@ test_that("1985-2011 with AOI", {
             "libcbm"
           )
         )
-        reticulate::use_virtualenv("r-spadesCBM-test")
+        reticulate::use_virtualenv("r-spadesCBM")
       },
 
       masterRaster = {
