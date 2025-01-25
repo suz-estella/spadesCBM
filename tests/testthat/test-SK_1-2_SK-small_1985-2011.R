@@ -1,16 +1,14 @@
 
-## This test was created based on globalSKsmall.R on 2025-01-07.
-## Times: 1998 - 2000
-## Study area: xmin = -687696, xmax = -681036, ymin = 711955, ymax = 716183
+## Global tested: SK-small_1998-2000.R (modified)
 
 if (!testthat::is_testing()) source(testthat::test_path("setup.R"))
 
-test_that("1998-2000 with AOI", {
+test_that("SK small 1985-2011", {
 
   ## Run simInit and spades ----
 
   # Set times
-  times <- list(start = 1998, end = 2000)
+  times <- list(start = 1985, end = 2011)
 
   # Restore paths on teardown
   pathsOriginal <- list(wd = getwd(), libs = .libPaths())
@@ -27,14 +25,19 @@ test_that("1998-2000 with AOI", {
       modules = .moduleLocations(c("CBM_defaults", "CBM_dataPrep_SK", "CBM_vol2biomass", "CBM_core")),
       times   = times,
       paths   = list(
-        projectPath = file.path(testDirs$temp$projects, "SK_1998-2000_withAOI"),
+        projectPath = file.path(testDirs$temp$projects, "SK-small_1985-2011"),
         inputPath   = testDirs$temp$inputs,
         modulePath  = getOption("spadesCBM.test.modulePath")
       ),
 
-      require = c("testthat",
-                  "reticulate", "PredictiveEcology/libcbmr", "data.table"),
+      # Set packages required for set up
+      options   = list(
+        repos = unique(c("predictiveecology.r-universe.dev", getOption("repos")))
+      ),
+      require = c("reticulate", "reproducible", "terra", "PredictiveEcology/libcbmr",
+                  "testthat"),
 
+      # Set up Python
       functions = paste(c(
         getOption("spadesCBM.test.modulePath"), .moduleLocations("CBM_core"), "R/ReticulateFindPython.R"
       ), collapse = "/"),
@@ -64,6 +67,10 @@ test_that("1998-2000 with AOI", {
         reticulate::use_virtualenv("r-spadesCBM")
       },
 
+      # Set input: Disturbance rasters URL
+      disturbanceRastersURL = "https://drive.google.com/file/d/12YnuQYytjcBej0_kdodLchPg7z9LygCt",
+
+      # Set input: Study area
       masterRaster = {
         extent = terra::ext(c(xmin = -687696, xmax = -681036, ymin = 711955, ymax = 716183))
         masterRaster <- terra::rast(extent, res = 30)
@@ -80,11 +87,10 @@ test_that("1998-2000 with AOI", {
         mr
       },
 
-      disturbanceRastersURL = "https://drive.google.com/file/d/12YnuQYytjcBej0_kdodLchPg7z9LygCt",
-
+      # Set input: Output table
       outputs = as.data.frame(expand.grid(
         objectName = c("cbmPools", "NPP"),
-        saveTime   = sort(c(times$start, times$start + c(1:(times$end - times$start))))
+        saveTime = sort(c(times$start, times$start + c(1:(times$end - times$start))))
       ))
     )
   )

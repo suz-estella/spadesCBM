@@ -1,11 +1,9 @@
 
-## This test runs the modules with all the default inputs.
-## Times: 1998 - 2000
-## Study area: All available for SK
+## Global tested: SK_1985-2011.R (modified)
 
 if (!testthat::is_testing()) source(testthat::test_path("setup.R"))
 
-test_that("1998-2000 all of SK", {
+test_that("SK 1998-2000", {
 
   ## Run simInit and spades ----
 
@@ -32,9 +30,14 @@ test_that("1998-2000 all of SK", {
         modulePath  = getOption("spadesCBM.test.modulePath")
       ),
 
-      require = c("testthat",
-                  "reticulate", "PredictiveEcology/libcbmr", "data.table"),
+      # Set packages required for set up
+      options   = list(
+        repos = unique(c("predictiveecology.r-universe.dev", getOption("repos")))
+      ),
+      require = c("reticulate", "PredictiveEcology/libcbmr",
+                  "testthat"),
 
+      # Set up Python
       functions = paste(c(
         getOption("spadesCBM.test.modulePath"), .moduleLocations("CBM_core"), "R/ReticulateFindPython.R"
       ), collapse = "/"),
@@ -64,9 +67,10 @@ test_that("1998-2000 all of SK", {
         reticulate::use_virtualenv("r-spadesCBM")
       },
 
+      # Set input: Output table
       outputs = as.data.frame(expand.grid(
         objectName = c("cbmPools", "NPP"),
-        saveTime   = sort(c(times$start, times$start + c(1:(times$end - times$start))))
+        saveTime = sort(c(times$start, times$start + c(1:(times$end - times$start))))
       ))
     )
   )

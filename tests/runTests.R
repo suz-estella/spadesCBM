@@ -45,15 +45,15 @@
 
 ## RUN INDIVIDUAL TESTS ----
 
-  ## Run 1998-2000 with AOI
-  testthat::test_file("tests/testthat/test-AOI_t1-1998-2000.R")
+  ## Run SK small 1998-2000
+  testthat::test_file("tests/testthat/test-SK_1-1_SK-small_1998-2000.R")
 
-  ## Run 1985-2011 with AOI
-  testthat::test_file("tests/testthat/test-AOI_t2-1985-2011.R")
+  ## Run SK small 1985-2011
+  testthat::test_file("tests/testthat/test-SK_1-2_SK-small_1985-2011.R")
 
-  ## Run 1998-2000 all of SK
-  testthat::test_file("tests/testthat/test-SK_t1-1998-2000.R")
+  ## Run SK 1998-2000
+  testthat::test_file("tests/testthat/test-SK_2-1_SK_1998-2000.R")
 
-  ## Run 1985-2011 all of SK
-  testthat::test_file("tests/testthat/test-SK_t2-1985-2011.R")
+  ## Run SK 1985-2011
+  testthat::test_file("tests/testthat/test-SK_2-2_SK_1985-2011.R")
 
