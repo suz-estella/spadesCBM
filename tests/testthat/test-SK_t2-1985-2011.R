@@ -12,31 +12,29 @@ test_that("SK 1985-2011 all of SK", {
   # Set times
   times <- list(start = 1985, end = 2011)
 
-  # Restore paths on teardown
-  pathsOriginal <- list(wd = getwd(), libs = .libPaths())
-  withr::defer({
-    setwd(pathsOriginal$wd)
-    #.libPaths(pathsOriginal$libs)
-  })
+  # Set project path
+  projectPath <- file.path(spadesTestPaths$temp$projects, "SK_1985-2011")
+  dir.create(projectPath)
+  withr::local_dir(projectPath)
 
   # Set up project
-  simInitInput <- .SpaDESwithCallingHandlers(
+  simInitInput <- SpaDEStestMuffleOutput(
 
     SpaDES.project::setupProject(
 
-      modules = .moduleLocations(c("CBM_defaults", "CBM_dataPrep_SK", "CBM_vol2biomass", "CBM_core")),
+      modules = moduleList[c("CBM_defaults", "CBM_dataPrep_SK", "CBM_vol2biomass", "CBM_core")],
       times   = times,
       paths   = list(
-        projectPath = file.path(testDirs$temp$projects, "SK_1985-2011"),
-        inputPath   = testDirs$temp$inputs,
+        projectPath = projectPath,
+        inputPath   = spadesTestPaths$temp$inputs,
+        packagePath = spadesTestPaths$temp$packages,
         modulePath  = getOption("spadesCBM.test.modulePath")
       ),
 
-      require = c("testthat",
-                  "reticulate", "PredictiveEcology/libcbmr", "data.table"),
+      require = c("reticulate", "data.table"),
 
       functions = paste(c(
-        getOption("spadesCBM.test.modulePath"), .moduleLocations("CBM_core"), "R/ReticulateFindPython.R"
+        getOption("spadesCBM.test.modulePath"), moduleList[["CBM_core"]], "R/ReticulateFindPython.R"
       ), collapse = "/"),
       ret = {
 
@@ -64,6 +62,12 @@ test_that("SK 1985-2011 all of SK", {
         reticulate::use_virtualenv("r-spadesCBM")
       },
 
+      # 2025-01-31 Susan: temporary fix:
+      # CBM_dataPrep_SK by default needs input to create mySpuDmids from userDist.
+      # Ideally this will be changed in the future
+      # and then this input will not need to be provided explicitly in tests.
+      mySpuDmids = data.table::data.table(read.csv(file.path(spadesTestPaths$testdata, "mySpuDmids.csv"))),
+
       outputs = as.data.frame(expand.grid(
         objectName = c("cbmPools", "NPP"),
         saveTime   = sort(c(times$start, times$start + c(1:(times$end - times$start))))
@@ -72,14 +76,14 @@ test_that("SK 1985-2011 all of SK", {
   )
 
   # Run simInit
-  simTestInit <- .SpaDESwithCallingHandlers(
+  simTestInit <- SpaDEStestMuffleOutput(
     SpaDES.core::simInit2(simInitInput)
   )
 
   expect_s4_class(simTestInit, "simList")
 
   # Run spades
-  simTest <- .SpaDESwithCallingHandlers(
+  simTest <- SpaDEStestMuffleOutput(
     SpaDES.core::spades(simTestInit)
   )
 
