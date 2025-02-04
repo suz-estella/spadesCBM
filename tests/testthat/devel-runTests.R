@@ -20,6 +20,7 @@
   options("spadesCBM.test.modulePath" = NULL)
 
   # Skip recreating the Python virtual environment
+  options("spades.test.virtualEnv" = FALSE)
 
   # Suppress warnings from calls to setupProject, simInit, and spades
   options("spades.test.suppressWarnings" = TRUE)
