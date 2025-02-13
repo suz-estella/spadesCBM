@@ -77,7 +77,7 @@ jobs:
           # # Run tests
           # testthat::test_dir("tests/testthat", stop_on_failure = TRUE)
 
-          # 2025-02-13: Run just the SK small test for now
+          # 2025-02-13: Run only the SK small test for now
           testthat::test_file("tests/testthat/test-SK-small_t1-1998-2000.R")
 
 
