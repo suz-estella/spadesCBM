@@ -5,7 +5,7 @@
 
 if (!testthat::is_testing()) source(testthat::test_path("setup.R"))
 
-test_that("1998-2000 with AOI", {
+test_that("SK-small 1998-2000", {
 
   ## Run simInit and spades ----
 
@@ -13,7 +13,7 @@ test_that("1998-2000 with AOI", {
   times <- list(start = 1998, end = 2000)
 
   # Set project path
-  projectPath <- file.path(spadesTestPaths$temp$projects, "SK_1998-2000_withAOI")
+  projectPath <- file.path(spadesTestPaths$temp$projects, "SK-small_1998-2000")
   dir.create(projectPath)
   withr::local_dir(projectPath)
 

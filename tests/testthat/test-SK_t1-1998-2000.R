@@ -5,7 +5,7 @@
 
 if (!testthat::is_testing()) source(testthat::test_path("setup.R"))
 
-test_that("1998-2000 all of SK", {
+test_that("SK 1998-2000", {
 
   ## Run simInit and spades ----
 
