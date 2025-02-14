@@ -9,10 +9,10 @@ on:
       - main
       - development
 
-name: testthat
+name: testthat-development
 
 jobs:
-  testthat:
+  testthat-development:
     if: "!contains(github.event.commits[0].message, '[skip-ci]')"
     runs-on: ${{ matrix.config.os }}
 
@@ -74,12 +74,19 @@ jobs:
           install.packages("googledrive")
           googledrive::drive_auth(path = Sys.getenv("GOOGLE_AUTH"))
 
+          # Test development branches
+          options("spades.test.modules" = c(
+            CBM_core        = "PredictiveEcology/CBM_core@development",
+            CBM_defaults    = "PredictiveEcology/CBM_defaults@development",
+            CBM_vol2biomass = "PredictiveEcology/CBM_vol2biomass@development",
+            CBM_dataprep_SK = "PredictiveEcology/CBM_dataprep_SK@development"
+          ))
+
           # # Run tests
           # testthat::test_dir("tests/testthat", stop_on_failure = TRUE)
 
           # 2025-02-13: Run only the SK small test for now
-          testthat::test_file("tests/testthat/test-SK-small_t1-1998-2000.R")
-
+          testthat::test_file("tests/testthat/test-SK-small_t1-1998-2000.R", stop_on_failure = TRUE)
 
         shell: Rscript {0}
 

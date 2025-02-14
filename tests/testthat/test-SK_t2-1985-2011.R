@@ -22,20 +22,20 @@ test_that("SK 1985-2011", {
 
     SpaDES.project::setupProject(
 
-      modules = moduleList[c("CBM_defaults", "CBM_dataPrep_SK", "CBM_vol2biomass", "CBM_core")],
+      modules = c("CBM_defaults", "CBM_dataPrep_SK", "CBM_vol2biomass", "CBM_core"),
       times   = times,
       paths   = list(
         projectPath = projectPath,
         inputPath   = spadesTestPaths$temp$inputs,
         packagePath = spadesTestPaths$temp$packages,
-        modulePath  = getOption("spadesCBM.test.modulePath")
+        modulePath  = spadesTestPaths$temp$modules,
+        cachePath   = file.path(projectPath, "cache"),
+        outputPath  = file.path(projectPath, "outputs")
       ),
 
       require = c("reticulate", "data.table"),
 
-      functions = paste(c(
-        getOption("spadesCBM.test.modulePath"), moduleList[["CBM_core"]], "R/ReticulateFindPython.R"
-      ), collapse = "/"),
+      functions = "PredictiveEcology/CBM_core@main/R/ReticulateFindPython.R",
       ret = {
 
         reticulate::virtualenv_create(

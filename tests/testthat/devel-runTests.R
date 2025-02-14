@@ -4,29 +4,28 @@
   # Install required packages
   ## Required because module is not an R package
   install.packages(
-    c("testthat", "SpaDES.core", "SpaDES.project", "googledrive"),
+    c("testthat", "SpaDES.core", "SpaDES.project"),
     repos = unique(c("predictiveecology.r-universe.dev", getOption("repos"))))
 
 
-## OPTIONAL: SET TEST OPTIONS ----
+## OPTIONS ----
 
-  # Set custom module locations: test custom repo branches
-  options("spadesCBM.test.module.CBM_core"        = "PredictiveEcology/CBM_core@development")
-  options("spadesCBM.test.module.CBM_defaults"    = "PredictiveEcology/CBM_defaults@development")
-  options("spadesCBM.test.module.CBM_vol2biomass" = "PredictiveEcology/CBM_vol2biomass@development")
-  options("spadesCBM.test.module.CBM_dataPrep_SK" = "PredictiveEcology/CBM_dataPrep_SK@development")
-
-  # Set custom module locations: test modules within a local directory
-  options("spadesCBM.test.modulePath" = NULL)
-
-  # Skip recreating the Python virtual environment
-  options("spades.test.virtualEnv" = FALSE)
+  # Test repo branches instead of local submodules
+  options("spades.test.modules" = c(
+    CBM_core        = "PredictiveEcology/CBM_core@development",
+    CBM_defaults    = "PredictiveEcology/CBM_defaults@development",
+    CBM_vol2biomass = "PredictiveEcology/CBM_vol2biomass@development",
+    CBM_dataprep_SK = "PredictiveEcology/CBM_dataprep_SK@development"
+  ))
 
   # Suppress warnings from calls to setupProject, simInit, and spades
   options("spades.test.suppressWarnings" = TRUE)
 
   # Set custom input data location
   options("reproducible.inputPaths" = NULL)
+
+  # Test recreating the Python virtual environment
+  options("spades.test.virtualEnv" = TRUE)
 
 
 ## RUN ALL TESTS ----
@@ -41,15 +40,15 @@
 
 ## RUN INDIVIDUAL TESTS ----
 
-  ## Run 1998-2000 with AOI
+  ## Run SK-small 1998-2000
   testthat::test_file("tests/testthat/test-SK-small_t1-1998-2000.R")
 
-  ## Run 1985-2011 with AOI
+  ## Run SK-small 1985-2011
   testthat::test_file("tests/testthat/test-SK-small_t2-1985-2011.R")
 
-  ## Run 1998-2000 all of SK
+  ## Run SK 1998-2000
   testthat::test_file("tests/testthat/test-SK_t1-1998-2000.R")
 
-  ## Run 1985-2011 all of SK
+  ## Run SK 1985-2011
   testthat::test_file("tests/testthat/test-SK_t2-1985-2011.R")
 
