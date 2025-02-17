@@ -15,7 +15,7 @@
     CBM_core        = "PredictiveEcology/CBM_core@development",
     CBM_defaults    = "PredictiveEcology/CBM_defaults@development",
     CBM_vol2biomass = "PredictiveEcology/CBM_vol2biomass@development",
-    CBM_dataprep_SK = "PredictiveEcology/CBM_dataprep_SK@development"
+    CBM_dataPrep_SK = "PredictiveEcology/CBM_dataPrep_SK@development"
   ))
 
   # Suppress warnings from calls to setupProject, simInit, and spades
