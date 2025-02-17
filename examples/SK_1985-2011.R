@@ -14,7 +14,8 @@
 
     Restart = interactive(),
 
-    paths   = list(projectPath = file.path("~/spadesCBM/examples", projectName)),
+    paths   = list(projectPath = file.path("~/spadesCBM/examples", projectName),
+                   inputPath   = "~/spadesCBM/inputs"),
     times   = times,
     modules = c(
       CBM_defaults    = "PredictiveEcology/CBM_defaults@main",
