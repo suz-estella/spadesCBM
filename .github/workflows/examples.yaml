@@ -73,7 +73,7 @@ jobs:
           googledrive::drive_auth(path = Sys.getenv("GOOGLE_AUTH"))
 
           # Run example
-          source("examples/SK-small_1985-2011.R")
+          source("examples/SK-small_1998-2000.R")
 
         shell: Rscript {0}
 
