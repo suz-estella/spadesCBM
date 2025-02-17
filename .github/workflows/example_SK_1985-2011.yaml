@@ -8,10 +8,10 @@ on:
       - main
       - development
 
-name: examples
+name: example_SK_1985-2011
 
 jobs:
-  examples:
+  example_SK_1985-2011:
     if: "!contains(github.event.commits[0].message, '[skip-ci]')"
     runs-on: ${{ matrix.config.os }}
 
@@ -64,17 +64,6 @@ jobs:
 
       - name: Install googledrive
         run: install.packages("googledrive")
-        shell: Rscript {0}
-
-      - name: Run example SK-small_1985-2011
-        run: |
-
-          # Authorize Google Drive
-          googledrive::drive_auth(path = Sys.getenv("GOOGLE_AUTH"))
-
-          # Run example
-          source("examples/SK-small_1998-2000.R")
-
         shell: Rscript {0}
 
       - name: Run example SK_1985-2011
