@@ -60,19 +60,31 @@
 
     # Set input: Study area
     masterRaster = {
-      extent = terra::ext(c(xmin = -687696, xmax = -681036, ymin = 711955, ymax = 716183))
-      masterRaster <- terra::rast(extent, res = 30)
-      terra::crs(masterRaster) <- "PROJCRS[\"Lambert_Conformal_Conic_2SP\",\n    BASEGEOGCRS[\"GCS_GRS_1980_IUGG_1980\",\n        DATUM[\"D_unknown\",\n            ELLIPSOID[\"GRS80\",6378137,298.257222101,\n                LENGTHUNIT[\"metre\",1,\n                    ID[\"EPSG\",9001]]]],\n        PRIMEM[\"Greenwich\",0,\n            ANGLEUNIT[\"degree\",0.0174532925199433,\n                ID[\"EPSG\",9122]]]],\n    CONVERSION[\"Lambert Conic Conformal (2SP)\",\n        METHOD[\"Lambert Conic Conformal (2SP)\",\n            ID[\"EPSG\",9802]],\n        PARAMETER[\"Latitude of false origin\",49,\n            ANGLEUNIT[\"degree\",0.0174532925199433],\n            ID[\"EPSG\",8821]],\n        PARAMETER[\"Longitude of false origin\",-95,\n            ANGLEUNIT[\"degree\",0.0174532925199433],\n            ID[\"EPSG\",8822]],\n        PARAMETER[\"Latitude of 1st standard parallel\",49,\n            ANGLEUNIT[\"degree\",0.0174532925199433],\n            ID[\"EPSG\",8823]],\n        PARAMETER[\"Latitude of 2nd standard parallel\",77,\n            ANGLEUNIT[\"degree\",0.0174532925199433],\n            ID[\"EPSG\",8824]],\n        PARAMETER[\"Easting at false origin\",0,\n            LENGTHUNIT[\"metre\",1],\n            ID[\"EPSG\",8826]],\n        PARAMETER[\"Northing at false origin\",0,\n            LENGTHUNIT[\"metre\",1],\n            ID[\"EPSG\",8827]]],\n    CS[Cartesian,2],\n        AXIS[\"easting\",east,\n            ORDER[1],\n            LENGTHUNIT[\"metre\",1,\n                ID[\"EPSG\",9001]]],\n        AXIS[\"northing\",north,\n            ORDER[2],\n            LENGTHUNIT[\"metre\",1,\n                ID[\"EPSG\",9001]]]]"
-      masterRaster[] <- rep(1, terra::ncell(masterRaster))
-      mr <- reproducible::prepInputs(
-        destinationPath = projectPaths$inputPath,
-        url        = "https://drive.google.com/file/d/1zUyFH8k6Ef4c_GiWMInKbwAl6m6gvLJW",
-        targetFile = "ldSp_TestArea.tif",
-        to         = masterRaster,
-        method     = "near"
+
+      # Set study area extent and resolution
+      mrAOI <- list(
+        ext = c(xmin = -687696, xmax = -681036, ymin = 711955, ymax = 716183),
+        res = 30
       )
-      mr[mr[] == 0] <- NA
-      mr
+
+      # Align SK master raster with study area
+      mrSource <- terra::rast(
+        reproducible::preProcess(
+          destinationPath = projectPaths$inputPath,
+          url             = "https://drive.google.com/file/d/1zUyFH8k6Ef4c_GiWMInKbwAl6m6gvLJW",
+          targetFile      = "ldSp_TestArea.tif"
+        )$targetFilePath)
+
+      reproducible::postProcess(
+        mrSource,
+        to = terra::rast(
+          extent     = mrAOI$ext,
+          resolution = mrAOI$res,
+          crs        = terra::crs(mrSource),
+          vals       = 1
+        ),
+        method = "near"
+      ) |> terra::classify(cbind(0, NA))
     },
 
     # Set input: Output table
