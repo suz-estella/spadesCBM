@@ -8,10 +8,10 @@ on:
       - main
       - development
 
-name: testthat-development
+name: examples
 
 jobs:
-  testthat-development:
+  examples:
     if: "!contains(github.event.commits[0].message, '[skip-ci]')"
     runs-on: ${{ matrix.config.os }}
 
@@ -63,10 +63,10 @@ jobs:
         shell: Rscript {0}
 
       - name: Install googledrive
-        run:  install.packages("googledrive")
+        run: install.packages("googledrive")
         shell: Rscript {0}
 
-      - name: Run example: SK-small_1985-2011
+      - name: Run example SK-small_1985-2011
         run: |
 
           # Authorize Google Drive
@@ -77,7 +77,7 @@ jobs:
 
         shell: Rscript {0}
 
-      - name: Run example: SK_1985-2011
+      - name: Run example SK_1985-2011
         run: |
 
           # Authorize Google Drive
