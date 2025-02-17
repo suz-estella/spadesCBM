@@ -3,7 +3,6 @@ on:
     branches:
       - main
       - development
-      - suz-testthat
   pull_request:
     branches:
       - main
@@ -79,7 +78,7 @@ jobs:
             CBM_core        = "PredictiveEcology/CBM_core@development",
             CBM_defaults    = "PredictiveEcology/CBM_defaults@development",
             CBM_vol2biomass = "PredictiveEcology/CBM_vol2biomass@development",
-            CBM_dataprep_SK = "PredictiveEcology/CBM_dataprep_SK@development"
+            CBM_dataPrep_SK = "PredictiveEcology/CBM_dataPrep_SK@development"
           ))
 
           # # Run tests
