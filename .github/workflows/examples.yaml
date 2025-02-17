@@ -8,10 +8,10 @@ on:
       - main
       - development
 
-name: testthat-development
+name: examples
 
 jobs:
-  testthat-development:
+  examples:
     if: "!contains(github.event.commits[0].message, '[skip-ci]')"
     runs-on: ${{ matrix.config.os }}
 
