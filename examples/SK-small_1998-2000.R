@@ -40,7 +40,9 @@
     ),
 
     # Set packages required for set up
-    require = c("reticulate", "terra"),
+    ## TODO: REMOVE TEMPORARY FIX: install libcbmr which is a missing dependency of CBM_core.
+    ## This has already been fixed in the development branch.
+    require = c("reticulate", "terra", "PredictiveEcology/libcbmr"),
 
     # Set up Python
     functions = "PredictiveEcology/CBM_core@main/R/ReticulateFindPython.R",
@@ -109,10 +111,6 @@
   ## This has already been fixed in the development branch.
   if (!interactive()) dir.create(file.path("~/spadesCBM/examples", projectName, "modules", "CBM_vol2biomass", "figures"),
                                  recursive = TRUE, showWarnings = FALSE)
-
-  ## TODO: REMOVE TEMPORARY FIX: install libcbmr which is a missing dependency of CBM_core.
-  ## This has already been fixed in the development branch.
-  Require::Require("PredictiveEcology/libcbmr", libPaths = "~/spadesCBM/packages")
 
   # Run simulation
   simCBM <- SpaDES.core::simInitAndSpades2(simSetup)
