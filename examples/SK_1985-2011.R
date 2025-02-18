@@ -85,7 +85,6 @@
   ## This has already been fixed in the development branch.
   Require::Require("PredictiveEcology/libcbmr", libPaths = "~/spadesCBM/packages")
 
-
   # Run simulation
   simCBM <- SpaDES.core::simInitAndSpades2(simSetup)
 
