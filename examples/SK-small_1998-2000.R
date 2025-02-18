@@ -12,8 +12,10 @@
   # Set up simulation
   simSetup <- SpaDES.project::setupProject(
 
-    Restart = interactive(),
+    # Open RStudio project
+    Restart = TRUE,
 
+    # Set project paths
     paths   = list(
       projectPath = file.path("~/spadesCBM/examples", projectName),
       modulePath  = file.path("~/spadesCBM/examples", projectName, "modules"),
@@ -22,13 +24,15 @@
       packagePath = "~/spadesCBM/packages",
       cachePath   = "~/spadesCBM/cache"
     ),
-    modules = c(
-      CBM_defaults    = "PredictiveEcology/CBM_defaults@d4f1a20",
-      CBM_dataPrep_SK = "PredictiveEcology/CBM_dataPrep_SK@2e688b5",
-      CBM_vol2biomass = "PredictiveEcology/CBM_vol2biomass@314a819",
-      CBM_core        = "PredictiveEcology/CBM_core@bda6b64"
-    ),
+
+    # Set modules and simulation time span
     times   = times,
+    modules = c(
+      CBM_defaults    = "PredictiveEcology/CBM_defaults@main",
+      CBM_dataPrep_SK = "PredictiveEcology/CBM_dataPrep_SK@main",
+      CBM_vol2biomass = "PredictiveEcology/CBM_vol2biomass@main",
+      CBM_core        = "PredictiveEcology/CBM_core@main"
+    ),
 
     # Set options
     options = list(
@@ -105,6 +109,10 @@
   ## This has already been fixed in the development branch.
   if (!interactive()) dir.create(file.path("~/spadesCBM/examples", projectName, "modules", "CBM_vol2biomass", "figures"),
                                  recursive = TRUE, showWarnings = FALSE)
+
+  ## TODO: REMOVE TEMPORARY FIX: install libcbmr which is a missing dependency of CBM_core.
+  ## This has already been fixed in the development branch.
+  Require::Require("PredictiveEcology/libcbmr", libPaths = "~/spadesCBM/packages")
 
   # Run simulation
   simCBM <- SpaDES.core::simInitAndSpades2(simSetup)
