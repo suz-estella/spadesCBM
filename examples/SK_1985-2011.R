@@ -65,6 +65,11 @@
     ))
   )
 
+  ## TODO: REMOVE TEMPORARY FIX: create CBM_vol2biomass figures directory without user input.
+  ## This has already been fixed in the development branch.
+  if (!interactive()) dir.create(file.path("~/spadesCBM/examples", projectName, "CBM_vol2biomass", "figures"),
+                                 recursive = TRUE, showWarnings = FALSE)
+
   # Run simulation
   simCBM <- SpaDES.core::simInitAndSpades2(simSetup)
 
