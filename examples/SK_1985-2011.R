@@ -14,17 +14,24 @@
 
     Restart = interactive(),
 
-    paths   = list(projectPath = file.path("~/spadesCBM/examples", projectName),
-                   inputPath   = "~/spadesCBM/inputs"),
-    times   = times,
+    paths   = list(
+      projectPath = file.path("~/spadesCBM/examples", projectName),
+      modulePath  = file.path("~/spadesCBM/examples", projectName, "modules"),
+      outputPath  = file.path("~/spadesCBM/examples", projectName, "outputs"),
+      inputPath   = "~/spadesCBM/inputs",
+      packagePath = "~/spadesCBM/packages",
+      cachePath   = "~/spadesCBM/cache"
+    ),
     modules = c(
       CBM_defaults    = "PredictiveEcology/CBM_defaults@d4f1a20",
       CBM_dataPrep_SK = "PredictiveEcology/CBM_dataPrep_SK@2e688b5",
       CBM_vol2biomass = "PredictiveEcology/CBM_vol2biomass@314a819",
       CBM_core        = "PredictiveEcology/CBM_core@bda6b64"
     ),
-    options   = list(
-      repos = unique(c("predictiveecology.r-universe.dev", getOption("repos"))),
+    times   = times,
+
+    # Set options
+    options = list(
       spades.moduleCodeChecks = FALSE
     ),
 
@@ -67,7 +74,7 @@
 
   ## TODO: REMOVE TEMPORARY FIX: create CBM_vol2biomass figures directory without user input.
   ## This has already been fixed in the development branch.
-  if (!interactive()) dir.create(file.path("~/spadesCBM/examples", projectName, "CBM_vol2biomass", "figures"),
+  if (!interactive()) dir.create(file.path("~/spadesCBM/examples", projectName, "modules", "CBM_vol2biomass", "figures"),
                                  recursive = TRUE, showWarnings = FALSE)
 
   # Run simulation
