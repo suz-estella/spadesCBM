@@ -26,13 +26,12 @@
     ),
 
     # Set modules and simulation time span
-    ## TODO: Should point to the main branches
     times   = times,
     modules = c(
-      CBM_defaults    = "PredictiveEcology/CBM_defaults@development",
-      CBM_dataPrep_SK = "PredictiveEcology/CBM_dataPrep_SK@development",
-      CBM_vol2biomass = "PredictiveEcology/CBM_vol2biomass@development",
-      CBM_core        = "PredictiveEcology/CBM_core@main@development"
+      CBM_defaults    = "PredictiveEcology/CBM_defaults@main",
+      CBM_dataPrep_SK = "PredictiveEcology/CBM_dataPrep_SK@main",
+      CBM_vol2biomass = "PredictiveEcology/CBM_vol2biomass@main",
+      CBM_core        = "PredictiveEcology/CBM_core@main"
     ),
 
     # Set options
