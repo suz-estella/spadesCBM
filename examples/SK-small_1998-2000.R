@@ -70,7 +70,7 @@
       # Align SK master raster with study area
       mrSource <- terra::rast(
         reproducible::preProcess(
-          destinationPath = projectPaths$inputPath,
+          destinationPath = "~/spadesCBM/inputs",
           url             = "https://drive.google.com/file/d/1zUyFH8k6Ef4c_GiWMInKbwAl6m6gvLJW",
           targetFile      = "ldSp_TestArea.tif"
         )$targetFilePath)
