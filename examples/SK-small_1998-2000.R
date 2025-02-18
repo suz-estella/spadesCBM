@@ -26,12 +26,13 @@
     ),
 
     # Set modules and simulation time span
+    ## TODO: Should point to the main branches
     times   = times,
     modules = c(
-      CBM_defaults    = "PredictiveEcology/CBM_defaults@main",
-      CBM_dataPrep_SK = "PredictiveEcology/CBM_dataPrep_SK@main",
-      CBM_vol2biomass = "PredictiveEcology/CBM_vol2biomass@main",
-      CBM_core        = "PredictiveEcology/CBM_core@main"
+      CBM_defaults    = "PredictiveEcology/CBM_defaults@development",
+      CBM_dataPrep_SK = "PredictiveEcology/CBM_dataPrep_SK@development",
+      CBM_vol2biomass = "PredictiveEcology/CBM_vol2biomass@development",
+      CBM_core        = "PredictiveEcology/CBM_core@main@development"
     ),
 
     # Set options
@@ -40,9 +41,7 @@
     ),
 
     # Set packages required for set up
-    ## TODO: REMOVE TEMPORARY FIX: install libcbmr which is a missing dependency of CBM_core.
-    ## This has already been fixed in the development branch.
-    require = c("reticulate", "terra", "PredictiveEcology/libcbmr"),
+    require = c("reticulate", "terra"),
 
     # Set up Python
     functions = "PredictiveEcology/CBM_core@main/R/ReticulateFindPython.R",
@@ -106,11 +105,6 @@
       saveTime = sort(c(times$start, times$start + c(1:(times$end - times$start))))
     ))
   )
-
-  ## TODO: REMOVE TEMPORARY FIX: create CBM_vol2biomass figures directory without user input.
-  ## This has already been fixed in the development branch.
-  if (!interactive()) dir.create(file.path("~/spadesCBM/examples", projectName, "modules", "CBM_vol2biomass", "figures"),
-                                 recursive = TRUE, showWarnings = FALSE)
 
   # Run simulation
   simCBM <- SpaDES.core::simInitAndSpades2(simSetup)
