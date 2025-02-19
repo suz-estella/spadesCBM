@@ -70,10 +70,6 @@ jobs:
       - name: Run testthat
         run: |
 
-          # Authorize Google Drive
-          install.packages("googledrive")
-          googledrive::drive_auth(path = Sys.getenv("GOOGLE_AUTH"))
-
           # Set module branches
           options("spades.test.modules" = c(
             CBM_core        = paste0("PredictiveEcology/CBM_core@",        Sys.getenv("BRANCH_NAME")),
@@ -81,6 +77,11 @@ jobs:
             CBM_vol2biomass = paste0("PredictiveEcology/CBM_vol2biomass@", Sys.getenv("BRANCH_NAME")),
             CBM_dataPrep_SK = paste0("PredictiveEcology/CBM_dataPrep_SK@", Sys.getenv("BRANCH_NAME"))
           ))
+          cat("\nTESTING WITH MODULES:\n -", paste(getOption("spades.test.modules"), collapse = "\n - "), "\n\n")
+
+          # Authorize Google Drive
+          install.packages("googledrive")
+          googledrive::drive_auth(path = Sys.getenv("GOOGLE_AUTH"))
 
           # # Run tests
           # testthat::test_dir("tests/testthat", stop_on_failure = TRUE)
