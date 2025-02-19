@@ -8,10 +8,10 @@ on:
       - main
       - development
 
-name: testthat
+name: testthat-development
 
 jobs:
-  testthat:
+  testthat-development:
     if: "!contains(github.event.commits[0].message, '[skip-ci]')"
     runs-on: ${{ matrix.config.os }}
 
@@ -76,10 +76,10 @@ jobs:
 
           # Set module branches
           options("spades.test.modules" = c(
-            CBM_core        = paste0("PredictiveEcology/CBM_core",        Sys.getenv("BRANCH_NAME")),
-            CBM_defaults    = paste0("PredictiveEcology/CBM_defaults",    Sys.getenv("BRANCH_NAME")),
-            CBM_vol2biomass = paste0("PredictiveEcology/CBM_vol2biomass", Sys.getenv("BRANCH_NAME")),
-            CBM_dataPrep_SK = paste0("PredictiveEcology/CBM_dataPrep_SK", Sys.getenv("BRANCH_NAME"))
+            CBM_core        = paste0("PredictiveEcology/CBM_core@",        Sys.getenv("BRANCH_NAME")),
+            CBM_defaults    = paste0("PredictiveEcology/CBM_defaults@",    Sys.getenv("BRANCH_NAME")),
+            CBM_vol2biomass = paste0("PredictiveEcology/CBM_vol2biomass@", Sys.getenv("BRANCH_NAME")),
+            CBM_dataPrep_SK = paste0("PredictiveEcology/CBM_dataPrep_SK@", Sys.getenv("BRANCH_NAME"))
           ))
 
           # Run tests
