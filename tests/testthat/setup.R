@@ -1,41 +1,32 @@
 
 if (!testthat::is_testing()){
-  library(testthat)
+  suppressPackageStartupMessages(library(testthat))
   testthat::source_test_helpers(env = globalenv())
 }
 
-# Set teardown environment
-teardownEnv <- if (testthat::is_testing()) testthat::teardown_env() else parent.frame()
+# Source work in progress SpaDES module testing functions
+suppressPackageStartupMessages(library(SpaDES.core))
+tempScript <- tempfile(fileext = ".R")
+download.file(
+  "https://raw.githubusercontent.com/suz-estella/SpaDES.core/refs/heads/suz-testthat/R/testthat.R",
+  tempScript, quiet = TRUE)
+source(tempScript)
 
-# List test directories
-testDirs <- .test_directories()
+# Set up testing global options
+SpaDEStestSetGlobalOptions()
 
-# Create temporary directories
-for (d in testDirs$temp) dir.create(d)
-withr::defer({
-  unlink(testDirs$temp$root, recursive = TRUE)
-  if (file.exists(testDirs$temp$root)) warning(
-    "Temporary test directory could not be removed: ", testDirs$temp$root, call. = F)
-}, envir = teardownEnv, priority = "last")
+# Set up testing directories
+spadesTestPaths <- SpaDEStestSetUpDirectories(
+  modulePath  = "modules",
+  moduleRepos = getOption("spades.test.modules"),
+  require     = "googledrive"
+)
 
-# Set reproducible options:
-# - Silence messaging
-if (testthat::is_testing()) withr::local_options(list(reproducible.verbose = -2), .local_envir = teardownEnv)
-
-# Set Require package options:
-# - Clone R packages from user library
-# - Silence messaging
-withr::local_options(list(Require.cloneFrom = Sys.getenv("R_LIBS_USER")), .local_envir = teardownEnv)
-if (testthat::is_testing()) withr::local_options(list(Require.verbose = -2), .local_envir = teardownEnv)
-
-# Set SpaDES.project option to never update R profile
-withr::local_options(list(SpaDES.project.updateRprofile = FALSE), .local_envir = teardownEnv)
-
-# Set Python virtual environment location within temporary directory
-if (getOption("spadesCBM.test.virtualEnv", default = TRUE)){
-  dir.create(file.path(testDirs$temp$root, "virtualenvs"))
+# Recreate the Python virtual environment location
+if (getOption("spades.test.virtualEnv", default = FALSE)){
+  dir.create(file.path(spadesTestPaths$temp$root, "virtualenvs"))
   withr::local_envvar(
-    list(RETICULATE_VIRTUALENV_ROOT = file.path(testDirs$temp$root, "virtualenvs")),
-    .local_envir = teardownEnv)
+    list(RETICULATE_VIRTUALENV_ROOT = file.path(spadesTestPaths$temp$root, "virtualenvs")),
+    .local_envir = if (testthat::is_testing()) testthat::teardown_env() else parent.frame())
 }
 
