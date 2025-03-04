@@ -69,7 +69,7 @@ Sys.setenv(R_USE_REQUIRE = "false")
 Sys.getenv("R_USE_REQUIRE")
 
 ## NOTE: need dot because knitting is doing `rm(list = ls())`
-.copyModuleRmds <- prepManualRmds("modules", rebuildCache = FALSE) ## use rel path!
+.copyModuleRmds <- prepManualRmds("../modules", rebuildCache = FALSE) ## use rel path!
 
 ## render the book using new env -- see <https://stackoverflow.com/a/46083308>
 bookdown::render_book(output_format = "all", envir = new.env())
