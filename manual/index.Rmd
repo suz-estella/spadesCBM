@@ -13,13 +13,9 @@ description: |
 
 # About
 
-[spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) is a modular, transparent, and spatially explicit implementation of the logic, pools structure, equations, and default assumptions of the Carbon Budget Model of the Canadian Forest Sector [CBM](https://natural-resources.canada.ca/climate-change/climate-change-impacts-forests/carbon-accounting/carbon-budget-model/13107).
-It applies the science presented in @kurz2009 in a similar way to the
-simulations in @boisvenue2016 and @boisvenue2022 but calls Python
-functions for annual processes. These functions are, like much of
-modelling-based science, continuously under development.
+[spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) is a modular, transparent, and spatially explicit implementation of the logic, pools structure, equations, and default assumptions of the Carbon Budget Model of the Canadian Forest Sector [CBM](https://natural-resources.canada.ca/climate-change/climate-change-impacts-forests/carbon-accounting/carbon-budget-model/13107). It applies the science presented in @kurz2009 in a similar way to the simulations in @boisvenue2016 and @boisvenue2022 but calls Python functions for annual processes. These functions are, like much of modelling-based science, continuously under development.
 
-The collection of [SpaDES](https://SpaDES.PredictiveEcology.org) modules in `spadesCBM` was developed to enable a R&D branch of the Canadian Foresty Service [CFS](https://natural-resources.canada.ca/corporate/corporate-overview/about-canadian-forest-service) forest carbon reporting system, [NFCMARS](https://natural-resources.canada.ca/climate-change/forest-carbon/canada-s-forest-carbon-reporting-system). The CFS provides the science backing for Canadian policies on national forest issues. `spadesCBM` is a tool in which new science, data and algorithms can be tested and explored to serve policy purposes. `spadesCBM` development follows the PERFICT approach @mcintire2022 for ecological modelling systems. The [SpaDES] platform is the toolset that enables the implementation of the PERFICT principle, a recipe to build nimble system that help solve many ecological modelling issues.
+The collection of [SpaDES](https://SpaDES.PredictiveEcology.org) modules in `spadesCBM` was developed to enable an R&D backing to the Canadian Foresty Service [CFS](https://natural-resources.canada.ca/corporate/corporate-overview/about-canadian-forest-service) forest carbon reporting system, [NFCMARS](https://natural-resources.canada.ca/climate-change/forest-carbon/canada-s-forest-carbon-reporting-system). The CFS provides the science backing for Canadian policies on national forest issues. [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) is a tool in which new science, data and algorithms can be tested and explored to serve policy purposes. [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) development follows the PERFICT approach @mcintire2022 for ecological modelling systems. The [SpaDES](https://SpaDES.PredictiveEcology.org) platform is the toolset that enables the implementation of the PERFICT principle, a recipe to build nimble system that help solve many ecological modelling issues.
 
 ## Usage 
 
@@ -27,31 +23,31 @@ Four modules need to be run in tandem for a `spadesCBM` simulation.
 The first module [CBM_defaults](https://github.com/PredictiveEcology/CBM_defaults.git) reads in defaults CBM parameters for Canada.  
 The second module [CBM_dataPrep]() is a data preparation SpaDES module, where input data and spatial layers are assembled and prepared for a specific study area. The example in this manual simulates the managed forest of Saskatchewan.
 The [CBM_dataPrep_SK](https://github.com/PredictiveEcology/CBM_dataPrep_SK.git) module will be study-area and scenario specific. 
-Throughout this manual we use an example simulation of forest carbon dynamics for the managed forests of SK are simulated from 1985-2012 similarly to the simulations in @boisvenue2016 (the *_SK* indicates the study area).
+Throughout this manual we use an example simulation of forest carbon dynamics for the managed forests of SK are simulated from 1985-2012 similarly to the simulations in @boisvenue2016, the *_SK* indicates the study area.
 In spadesCBM, as in CBM, growth curves ($m^3/ha$) are the main change-agent. 
 The [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git) module translates user-provided stand-level growth curves ($m^3/ha$) into increments for specific above ground carbon pools (metric tonnes of carbon/ha) using @boudewyn2007 models to which we added a smoothing algorithm to fill-in the gap between age 0 and the age at which growth curves have data. 
-Note that *CBM_vol2biomass* is also study-area specific as @boudewyn2007 parameters are dominant species and ecozones specific.
-These three modules provide the inputs to the [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) module where processes are applied on a yearly time step. 
+Note that [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git) is also study-area specific as @boudewyn2007 parameters are dominant species and ecozones specific.
+These three modules provide the inputs to the [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) module where processes are applied on a specified time step (in our example, yearly). 
 This modularity enables users to access and change default parameters, change inputs, and assess the impact of these changes. 
 We are working on various implementations of this modelling system and making these available to the community in the [Preditive Ecology](https://github.com/PredictiveEcology) GitHub repository.
 We hope others will do the same. 
-A smaller example use of `spadesCBM` is available in the `SpaDES` [training manual](https://predictiveecology.org/training/_book/spadesCBMDemo.html).
+A smaller example use of [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) is available in the [SpaDES](https://SpaDES.PredictiveEcology.org) [training manual](https://predictiveecology.org/training/_book/spadesCBMDemo.html).
 
-Several core utilities to `spadesCBM` are provided by the [`CBMutils`](https://github.com/PredictiveEcology/CBMutils@development) package, available on GitHub. Active development in `CBMutils` and all `spadesCBM` modules is underway.
+Several core utilities to [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) are provided by the [`CBMutils`](https://github.com/PredictiveEcology/CBMutils@development) package, available on GitHub. Active development in [`CBMutils`](https://github.com/PredictiveEcology/CBMutils@development) and all [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) modules is underway.
 
 ## Setup
 
-In this example, we setup the workflow using `setupProject` from the
+In this example, we setup the workflow using the
 [`SpaDES.project`](https://spades-project.predictiveecology.org/) package and
-current versions of the spadesCBM modules.
+current versions of the [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) modules.
 
 ::: {.callout-important}
 ## Google account needed for this example
 
-Users need to access some of the data using the `googledrive` R package (part of the `tidyverse` family) to run the example in this manual. 
-During the `simInit()` (or `simInitAndSpades()`) call R will prompt you to either choose a previously authenticated account (if you have previously used `googledrive`) or to open a browser window and authenticate. 
+To run the provided example, users need to access some of the data using the [googledrive](https://cloud.r-project.org/web/packages/googledrive/index.html) R package (part of the [tidyverse](https://www.tidyverse.org/) familyof R packages). 
+During the [simInit()](https://spades-core.predictiveecology.org/reference/simInit.html) (or [simInitAndSpades](https://rdrr.io/cran/SpaDES.core/man/simInitAndSpades.html)) call, a function to initialize or initialize and run [SpaDES](https://SpaDES.PredictiveEcology.org)-based simulations, R will prompt you to either choose a previously authenticated account (if you have previously used [googledrive](https://cloud.r-project.org/web/packages/googledrive/index.html)) or to open a browser window and authenticate. 
 
-Make sure you give `tidyverse` read/write access to your files:
+Make sure you give [tidyverse](https://www.tidyverse.org/) read/write access to your files:
 
 ![](assets/img/gdriveauth.png){fig-align="center" width="467"}
 :::
@@ -59,20 +55,20 @@ Make sure you give `tidyverse` read/write access to your files:
 ::: {.callout-important}
 ## Python is required for this example
 
-The *CBM_core* module requires Python >=3.9 and <=3.12.7.
+The [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) module, which is the simulation modules of [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) requires Python >=3.9 and <=3.12.7.
 
 If a suitable version of Python does not already exist on your computer,
-`setupProject` will use the [`reticulate`](https://rstudio.github.io/reticulate/) package to install it using the [pyenv](https://github.com/pyenv/pyenv) or [pyenv-win](https://github.com/pyenv-win/pyenv-win) project.
+[SpaDES.project::setupProject](https://spades-project.predictiveecology.org/reference/setupProject.html) will use the [`reticulate`](https://rstudio.github.io/reticulate/) package to install it using the [pyenv](https://github.com/pyenv/pyenv) or [pyenv-win](https://github.com/pyenv-win/pyenv-win).
 
-If you are using a Windows computer with Git installed, the `pyenv-win` tool will be acquired and managed directly by `reticulate`. If you are using a Windows computer without Git installed, you will be prompted to allow the `pyenv-win` tool to be downloaded directly from Github to your local user application data directory (`tools::R_user_dir("r-spadesCBM")`).
+If you are using a Windows computer with Git installed, the [pyenv-win](https://github.com/pyenv-win/pyenv-win) tool will be acquired and managed directly by [`reticulate`](https://rstudio.github.io/reticulate/). If you are using a Windows computer without Git installed, you will be prompted to allow the [pyenv-win](https://github.com/pyenv-win/pyenv-win) tool to be downloaded directly from Github to your local user application data directory (`tools::R_user_dir("r-spadesCBM")`).
 
-If the Python installation process fails or you would prefer to manually install Python, it can be downloaded directly from [python.org/downloads](https://python.org/downloads).
+If the Python installation process fails or you would prefer to manually install Python, it can be downloaded directly from [python.org/downloads](https://python.org/downloads). The calls to Python functions from a package called [libcbm](https://cat-cfs.github.io/libcbm_py/). Python functions are only used in the [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) module. Details on [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) module and the Python functions are provided in [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) chapter in this manual.
 
 :::
 
 ## Run Example Simulation
 
-Here is the R script to run the simulation of forest carbon dynamics in the managed forests of SK from 1985 to 2012, with disturbances as presented in @boisvenue2016.
+Here is the R script to run the simulation of forest carbon dynamics in the managed forests of SK from 1985 to 2012, with disturbances as presented in @boisvenue2016. Depending on your computing capacity, this may take a while, particularly the first time you run it. Subsequent simulations are much faster because of the use of the [reproducible::Cache](https://cran.r-project.org/web/packages/SpaDES.core/vignettes/iii-cache.html) function.
 
 ```
 projectPath <- "~/GitHub/spadesCBM"
