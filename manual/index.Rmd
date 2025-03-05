@@ -21,7 +21,7 @@ The collection of [SpaDES](https://SpaDES.PredictiveEcology.org) modules in `spa
 
 Four modules need to be run in tandem for a `spadesCBM` simulation. 
 The first module [CBM_defaults](https://github.com/PredictiveEcology/CBM_defaults.git) reads in defaults CBM parameters for Canada.  
-The second module [CBM_dataPrep]() is a data preparation SpaDES module, where input data and spatial layers are assembled and prepared for a specific study area. The example in this manual simulates the managed forest of Saskatchewan.
+The second module [CBM_dataPrep](https://github.com/PredictiveEcology/CBM_dataPrep_SK.git) is a data preparation SpaDES module, where input data and spatial layers are assembled and prepared for a specific study area. The example in this manual simulates the managed forest of Saskatchewan.
 The [CBM_dataPrep_SK](https://github.com/PredictiveEcology/CBM_dataPrep_SK.git) module will be study-area and scenario specific. 
 Throughout this manual we use an example simulation of forest carbon dynamics for the managed forests of SK are simulated from 1985-2012 similarly to the simulations in @boisvenue2016, the *_SK* indicates the study area.
 In spadesCBM, as in CBM, growth curves ($m^3/ha$) are the main change-agent. 
