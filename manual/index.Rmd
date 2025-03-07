@@ -11,7 +11,7 @@ description: |
   set in the _output.yml file.
 ---
 
-::: {.callout-important}
+:::{.rmdimportant}
 This documentation is work in progress. Potential discrepancies and omissions may exist for the time being. If you find any, contact us [here]("https://github.com/PredictiveEcology/spadesCBM/issues").
 :::
 
@@ -54,7 +54,7 @@ In this example, we setup the workflow using the
 [`SpaDES.project`](https://spades-project.predictiveecology.org/) package and
 current versions of the [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) modules.
 
-::: {.callout-important}
+:::{.rmdimportant}
 ## Google account needed for this example
 
 To run the provided example, users need to access some of the data using the [googledrive](https://cloud.r-project.org/web/packages/googledrive/index.html) R package (part of the [tidyverse](https://www.tidyverse.org/) familyof R packages). 
@@ -62,10 +62,10 @@ During the [simInit()](https://spades-core.predictiveecology.org/reference/simIn
 
 Make sure you give [tidyverse](https://www.tidyverse.org/) read/write access to your files:
 
-![](assets/img/gdriveauth.png){fig-align="center" width="467"}
+![](https://github.com/PredictiveEcology/PredictiveEcology.org/blob/main/training/assets/img/gdriveauth.png?raw=true){fig-align="center" width="467"}
 :::
 
-::: {.callout-important}
+:::{.rmdimportant}
 ## Python is required for this example
 
 The [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) module, which is the simulation modules of [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) requires Python >=3.9 and <=3.12.7.
