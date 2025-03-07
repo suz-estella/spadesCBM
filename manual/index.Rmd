@@ -33,7 +33,7 @@ We are working on various implementations of this modelling system and making th
 We hope others will do the same. 
 A smaller example use of [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) is available in the [SpaDES](https://SpaDES.PredictiveEcology.org) [training manual](https://predictiveecology.org/training/_book/spadesCBMDemo.html).
 
-Several core utilities to [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) are provided by the [`CBMutils`](https://github.com/PredictiveEcology/CBMutils@development) package, available on GitHub. Active development in [`CBMutils`](https://github.com/PredictiveEcology/CBMutils@development) and all [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) modules is underway.
+Several core utilities to [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) are provided by the [`CBMutils`](https://github.com/PredictiveEcology/CBMutils/tree/development) package, available on GitHub. Active development in [`CBMutils`](https://github.com/PredictiveEcology/CBMutils/tree/development) and all [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) modules is underway.
 
 ## Setup
 
