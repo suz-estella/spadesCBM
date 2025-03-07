@@ -21,14 +21,14 @@ The collection of [SpaDES](https://SpaDES.PredictiveEcology.org) modules in `spa
 
 Four modules need to be run in tandem for a `spadesCBM` simulation. 
 The first module [CBM_defaults](https://github.com/PredictiveEcology/CBM_defaults.git) reads in defaults CBM parameters for Canada.  
-The second module [CBM_dataPrep](https://github.com/PredictiveEcology/CBM_dataPrep_SK.git) is a data preparation SpaDES module, where input data and spatial layers are assembled and prepared for a specific study area. The example in this manual simulates the managed forest of Saskatchewan.
+The second module [CBM_dataPrep_SK](https://github.com/PredictiveEcology/CBM_dataPrep_SK.git) is a data preparation SpaDES module, where input data and spatial layers are assembled and prepared for a specific study area. The example in this manual simulates the managed forest of Saskatchewan.
 The [CBM_dataPrep_SK](https://github.com/PredictiveEcology/CBM_dataPrep_SK.git) module will be study-area and scenario specific. 
 Throughout this manual we use an example simulation of forest carbon dynamics for the managed forests of SK are simulated from 1985-2012 similarly to the simulations in @boisvenue2016, the *_SK* indicates the study area.
 In spadesCBM, as in CBM, growth curves ($m^3/ha$) are the main change-agent. 
 The [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git) module translates user-provided stand-level growth curves ($m^3/ha$) into increments for specific above ground carbon pools (metric tonnes of carbon/ha) using @boudewyn2007 models to which we added a smoothing algorithm to fill-in the gap between age 0 and the age at which growth curves have data. 
-Note that [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git) is also study-area specific as @boudewyn2007 parameters are dominant species and ecozones specific.
-These three modules provide the inputs to the [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) module where processes are applied on a specified time step (in our example, yearly). 
-This modularity enables users to access and change default parameters, change inputs, and assess the impact of these changes. 
+Note that [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git) is also study-area specific as @boudewyn2007 parameters are dominant species and ecozones specific.[CBM_defaults](https://github.com/PredictiveEcology/CBM_defaults.git), [CBM_dataPrep_SK](https://github.com/PredictiveEcology/CBM_dataPrep_SK.git), and [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git) all only have one event (`init`) and need to be run only once (note that they will be [Cached](https://predictiveecology.org/training/_book/Caching.html)).
+These three modules provide the inputs to the [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) module where between pool carbon-transfers are applied on a specified time step (in our example, yearly). 
+This modularity enables users to access and change default parameters, change inputs, connect to external modules that modify the landscape, and assess the impact of these changes. 
 We are working on various implementations of this modelling system and making these available to the community in the [Preditive Ecology](https://github.com/PredictiveEcology) GitHub repository.
 We hope others will do the same. 
 A smaller example use of [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) is available in the [SpaDES](https://SpaDES.PredictiveEcology.org) [training manual](https://predictiveecology.org/training/_book/spadesCBMDemo.html).
