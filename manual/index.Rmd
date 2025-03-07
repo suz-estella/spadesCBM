@@ -46,7 +46,23 @@ The Carbon Budget Model (CBM) was first developed in the early 1990s @kurz1992.I
 
 [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) simulates forest carbon dynamics for a given study area based on Canadian-parameterization and user-provided growth and inventory information. Default Canadian parameters are read-in ([CBM_defaults](https://github.com/PredictiveEcology/CBM_defaults.git)), matched to the user-provided information ([CBM_dataPrep_SK](https://github.com/PredictiveEcology/CBM_dataPrep_SK.git) and [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git)), and this information drives the carbon-transfers through the simulations ([CBM_core](https://github.com/PredictiveEcology/CBM_core.git)).
 
-There are 20 carbon pools in [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) (MAKE A TABLE AND REFER TO IT). The carbon transfers are dictated by matrices (available in the defaults information) which specify the proportion of carbon moving from one pool ("source_pool" - this needs to be in our lexicon) to ("sink_pools")
+There are 20 carbon pools in [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) (MAKE A TABLE AND REFER TO IT). The carbon transfers are dictated by matrices (available in the defaults information) which specify the proportion of carbon moving from one pool ("source_pool" - this needs to be in our lexicon) to ("sink_pools" - this too). Matrices for growth are populated with the user-provided growth information and are the main change agent in the system. Default parameters for biomass and dead organic mater turnover , decay and soil mixing are either the the provincial/territorial, ecozone (NEED TO DEFINE), or Canada-wide scale (see @kurz2009 Table 1). Note that parameters can easily be modified in a [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) simulation.
+
+half growth
+domturnover
+bioturnover
+overmaturedecline
+2nd half of the growth
+domdecay
+slowdecay
+slowmixing
+
+disturbance happen before everything - dist matrices explanation
+matrices don't loose carbon, they apply proportions that add up to 1
+
+spinup procedure
+
+simulation illustration?
 
 ## Setup
 
