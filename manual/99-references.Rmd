@@ -1,10 +1,4 @@
 ---
-  title: "spadesCBM Manual"
-subtitle: "`r paste('v.', Sys.getenv('SpadesCBM_MAN_VERSION'))`"
-author: "Céline Boisvenue"
-date: "2025"
-site: bookdown::bookdown_site
-documentclass: book
 bibliography:
   - citations/references.bib
 csl: citations/ecology-letters.csl
