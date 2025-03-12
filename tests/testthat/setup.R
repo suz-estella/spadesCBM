@@ -21,12 +21,3 @@ spadesTestPaths <- SpaDEStestSetUpDirectories(
   moduleRepos = getOption("spades.test.modules"),
   require     = "googledrive"
 )
-
-# Recreate the Python virtual environment location
-if (getOption("spades.test.virtualEnv", default = FALSE)){
-  dir.create(file.path(spadesTestPaths$temp$root, "virtualenvs"))
-  withr::local_envvar(
-    list(RETICULATE_VIRTUALENV_ROOT = file.path(spadesTestPaths$temp$root, "virtualenvs")),
-    .local_envir = if (testthat::is_testing()) testthat::teardown_env() else parent.frame())
-}
-

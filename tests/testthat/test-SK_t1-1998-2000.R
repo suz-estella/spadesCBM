@@ -62,12 +62,6 @@ test_that("SK 1998-2000", {
         reticulate::use_virtualenv("r-spadesCBM")
       },
 
-      # 2025-01-31 Susan: temporary fix:
-      # CBM_dataPrep_SK by default needs input to create mySpuDmids from userDist.
-      # Ideally this will be changed in the future
-      # and then this input will not need to be provided explicitly in tests.
-      mySpuDmids = data.table::data.table(read.csv(file.path(spadesTestPaths$testdata, "mySpuDmids.csv"))),
-
       outputs = as.data.frame(expand.grid(
         objectName = c("cbmPools", "NPP"),
         saveTime   = sort(c(times$start, times$start + c(1:(times$end - times$start))))
