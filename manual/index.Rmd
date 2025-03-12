@@ -55,6 +55,29 @@ The Carbon Budget Model (CBM) was first developed in the early 1990s (@kurz1993)
 
 There are 20 carbon pools in [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) (MAKE A TABLE AND REFER TO IT - this needs a description of the pools similar to CBMCFS3_poolsIn2009pub). The carbon transfers are dictated by matrices (available in the defaults information) which specify the proportion of carbon moving from one pool ("source_pool" - this needs to be in our lexicon) to ("sink_pools" - this too). Matrices for growth are populated with the user-provided growth information and are the main change agent in the system. Default parameters for biomass and dead organic mater (DOM) turnover, decay, and soil mixing are either at the provincial/territorial, ecozone (NEED TO DEFINE), or Canada-wide scale (see @kurz2009 Table 1). Note that parameters can easily be modified from their defaults in a [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) simulation.
 
+| Pool | Description |
+--------------------------
+| Input | |
+| Merch | Live stemwood of merchantable size  |
+| Foliage | Live foliage |
+| Other | Live branches, stumps, and small trees |
+| CoarseRoots | Live roots ≥5 mm diameter |
+| FineRoots | Live roots <5 mm diameter |
+| AboveGroundVeryFastSoil | The L horizon comprised of foliar litter plus dead fine roots <5 mm diameter |
+| BelowGroundVeryFastSoil | Dead fine roots in the mineral soil <5 mm diameter |
+| AboveGroundFastSoil | Fine and small woody debris plus dead coarse roots in the forest floor ≥5 and <75 mm diameter |
+| BelowGroundFastSoil | Dead coarse roots in the mineral soil ≥5 diameter |
+| MediumSoil | Coarse woody debris on the ground |
+| AboveGroundSlowSoil | F, H, and O horizons |
+| BelowGroundSlowSoil | Humified organic matter in the mineral soil |
+| StemSnag | Dead standing stemwood of merchantable size including bark |
+| BranchSnag | Dead branches, stumps, and small trees including bark |
+| CO2 |  |
+| CH4 |  |
+| CO |  |
+| NO2 |  |
+ 
+
 ### Order of operations
 
 In simulations, disturbances happen before any other carbon-transfer. After the disturbances, half of the growth (determined by increments in the user-provided growth curve) is applied followed by the transfers representing DOM turnover, live biomass turnover, an overmature decline compensation if applicable, the 2nd half of the growth, DOM decay, slow decay and slow soil mixing. Addition to the system only come from the atmosphere (amount determined by growth), and carbon exists the system to the atmosphere or to the forest products sector (ADD A FIGURE HERE MODIFICATION OF CBM_slide.ppt). Transfers are proportions of a source pool to sink pools and proportions add up to 1, so no carbon is lost.

@@ -3,3 +3,9 @@ title: "CBMutils"
 ---
 ```{r setup-CBMutils, include = FALSE}
 ```
+
+# CBMutils
+
+[`CBMutils`](https://github.com/PredictiveEcology/CBMutils/tree/development) is a package available on GitHub. It provides several core utilities to [spadesCBM](https://github.com/PredictiveEcology/spadesCBM). As with [spadesCBM](https://github.com/PredictiveEcology/spadesCBM) and its modules, development is ongoing. 
+
+## Notable functions and usage
