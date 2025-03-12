@@ -62,12 +62,6 @@ test_that("SK-small 1985-2011", {
         reticulate::use_virtualenv("r-spadesCBM")
       },
 
-      # 2025-01-31 Susan: temporary fix:
-      # CBM_dataPrep_SK by default needs input to create mySpuDmids from userDist.
-      # Ideally this will be changed in the future
-      # and then this input will not need to be provided explicitly in tests.
-      mySpuDmids = data.table::data.table(read.csv(file.path(spadesTestPaths$testdata, "mySpuDmids.csv"))),
-
       masterRaster = {
         extent = terra::ext(c(xmin = -687696, xmax = -681036, ymin = 711955, ymax = 716183))
         masterRaster <- terra::rast(extent, res = 30)
