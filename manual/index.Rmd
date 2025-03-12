@@ -1,14 +1,10 @@
 --- 
-title: "Spades CBM Manual"
+title: "spadesCBM Manual"
 subtitle: "`r paste('v.', Sys.getenv('SpadesCBM_MAN_VERSION'))`"
 author: "John Doe"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
-description: |
-  This is a minimal example of using the bookdown package to write a book.
-  The HTML output format for this example is bookdown::bs4_book,
-  set in the _output.yml file.
 bibliography:
   - citations/references.bib
 csl: citations/ecology-letters.csl
@@ -16,7 +12,7 @@ biblatexoptions: [refsegment=chapter]
 link-citations: true
 ---
 
-# About
+# Overview
 
 :::{.rmdimportant}
 This documentation is work in progress. Potential discrepancies and omissions may exist for the time being. If you find any, contact us [here]("https://github.com/PredictiveEcology/spadesCBM/issues").
@@ -47,7 +43,7 @@ Several core utilities to [spadesCBM](https://github.com/PredictiveEcology/spade
 
 ## The Carbon Budget Model in SpaDES
 
-The Carbon Budget Model (CBM) was first developed in the early 1990s (@kurz1992). Its implementation in a platform for model inter-operability and nimbleness such as [SpaDES](https://SpaDES.PredictiveEcology.org) warrants an overview. 
+The Carbon Budget Model (CBM) was first developed in the early 1990s (@kurz1993). Its implementation in a platform for model inter-operability and nimbleness such as [SpaDES](https://SpaDES.PredictiveEcology.org) warrants an overview. 
 
 [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) simulates forest carbon dynamics for a given study area based on Canadian-parameterization and user-provided growth and inventory information. Default Canadian parameters are read-in ([CBM_defaults](https://github.com/PredictiveEcology/CBM_defaults.git)), matched to the user-provided information ([CBM_dataPrep_SK](https://github.com/PredictiveEcology/CBM_dataPrep_SK.git) and [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git)), and this information drives the carbon-transfers through the simulations ([CBM_core](https://github.com/PredictiveEcology/CBM_core.git)).
 
