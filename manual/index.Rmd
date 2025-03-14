@@ -58,6 +58,7 @@ The Carbon Budget Model (CBM) was first developed in the early 1990s (@kurz1993)
 There are 19 carbon pools in [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) (Table 1). The carbon transfers are dictated by matrices (available in the defaults information) which specify the proportion of carbon moving from one pool ("source_pool" - this needs to be in our lexicon) to ("sink_pools" - this too). Matrices for growth are populated with the user-provided growth information and are the main change agent in the system. Default parameters for biomass and dead organic mater (DOM) turnover, decay, and soil mixing are either at the provincial/territorial, ecozone (NEED TO DEFINE), or Canada-wide scale (see @kurz2009 Table 1). Note that parameters can easily be modified from their defaults in a [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) simulation.
 
 *Table 1: Carbon pools in spadesCBM*
+
 | Pool | Description |
 |--------|------------------|
 | Input |  |
