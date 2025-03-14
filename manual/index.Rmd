@@ -20,7 +20,7 @@ This documentation is work in progress. Potential discrepancies and omissions ma
 
 [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) is a modular, transparent, and spatially explicit implementation of the logic, pools structure, equations, and default assumptions of the Carbon Budget Model of the Canadian Forest Sector [CBM](https://natural-resources.canada.ca/climate-change/climate-change-impacts-forests/carbon-accounting/carbon-budget-model/13107). It applies the science presented in @kurz2009 in a similar way to the simulations in @boisvenue2016 and @boisvenue2022 but calls Python functions for annual processes (see [libcbm_py/examples/cbm_exn](https://github.com/cat-cfs/libcbm_py.git)). These functions and [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) are, like much of modelling-based science, continuously under development.
 
-The collection of [SpaDES](https://SpaDES.PredictiveEcology.org) modules in [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) was developed to enable R&D input to the Canadian Forest Service [CFS](https://natural-resources.canada.ca/climate-change/climate-change-impacts-forests/carbon-budget-model) forest carbon reporting system, [NFCMARS](https://natural-resources.canada.ca/climate-change/forest-carbon/canada-s-forest-carbon-reporting-system). The CFS provides the science backing for Canadian policies on national forest issues. [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) is a nimble tool in which new science, data and algorithms can be tested and explored to serve policy purposes. [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) development follows the PERFICT approach @mcintire2022 for ecological modelling systems. The [SpaDES](https://SpaDES.PredictiveEcology.org) platform is the toolkit that enables the implementation of the PERFICT principle, a recipe to build nimble system that help solve many ecological modelling issues.
+The collection of [SpaDES](https://SpaDES.PredictiveEcology.org) modules in [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) was developed to enable R&D input to the Canadian Forest Service ([CFS](https://natural-resources.canada.ca/climate-change/climate-change-impacts-forests/carbon-budget-model)) forest carbon reporting system, [NFCMARS](https://natural-resources.canada.ca/climate-change/forest-carbon/canada-s-forest-carbon-reporting-system). The CFS provides the science backing for Canadian policies on national forest issues. [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) is a nimble tool in which new science, data and algorithms can be tested and explored to serve policy purposes. [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) development follows the PERFICT approach of @mcintire2022 for ecological modelling systems. The [SpaDES](https://SpaDES.PredictiveEcology.org) platform is the toolkit that enables this implementation of the PERFICT principle, a recipe to build nimble systems that help solve many ecological modelling issues.
 
 ## Usage 
 
@@ -30,8 +30,10 @@ The second module, [CBM_dataPrep_SK](https://github.com/PredictiveEcology/CBM_da
 Throughout this manual we use an example simulation of forest carbon dynamics for the managed forests of SK from 1985-2012 similarly to the simulations in @boisvenue2016, where the *_SK* indicates the study area.
 In [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git), as in CBM, growth curves ($m^3/ha$) are the main change-agent. 
 The [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git) module translates user-provided stand-level growth curves ($m^3/ha$) into increments for specific above ground carbon pools (metric tonnes of carbon/ha) using @boudewyn2007 models (leading species specific) to which we added a smoothing algorithm to fill-in the gap between age 0 and the age at which growth curves have data. 
-Note that [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git) is also study-area specific as @boudewyn2007 parameters are dominant species and ecozone specific. [CBM_defaults](https://github.com/PredictiveEcology/CBM_defaults.git), [CBM_dataPrep_SK](https://github.com/PredictiveEcology/CBM_dataPrep_SK.git), and [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git) all have one [event](put a link here to our lexicon chapter) (`init`), and need to be run only once (note that they will be [Cached](https://predictiveecology.org/training/_book/Caching.html) in our example).
-These three modules provide the inputs to the [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) module where between pool carbon-transfers are applied on a specified time step (in our example, yearly). 
+Note that [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git) is also study-area specific, as @boudewyn2007 parameters are dominant species and ecozone specific. 
+
+[CBM_defaults](https://github.com/PredictiveEcology/CBM_defaults.git), [CBM_dataPrep_SK](https://github.com/PredictiveEcology/CBM_dataPrep_SK.git), and [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git) all have one [event](put a link here to our lexicon chapter) (`init`), and need to be run only once (note that they will be [cached](https://predictiveecology.org/training/_book/Caching.html) in our example).
+These three modules provide the inputs to the [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) module, where carbon-transfers between pools are applied on a specified time step (in our example, yearly). 
 This modularity enables users to access and change default parameters, change inputs, connect to external modules that modify the landscape, and assess the impact of these changes. 
 We are working on various implementations of this modelling system and making these available to the community in the [Preditive Ecology](https://github.com/PredictiveEcology) GitHub repository.
 We hope others will do the same. 
@@ -53,11 +55,12 @@ The Carbon Budget Model (CBM) was first developed in the early 1990s (@kurz1993)
 
 ### Pools
 
-There are 20 carbon pools in [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) (MAKE A TABLE AND REFER TO IT - this needs a description of the pools similar to CBMCFS3_poolsIn2009pub). The carbon transfers are dictated by matrices (available in the defaults information) which specify the proportion of carbon moving from one pool ("source_pool" - this needs to be in our lexicon) to ("sink_pools" - this too). Matrices for growth are populated with the user-provided growth information and are the main change agent in the system. Default parameters for biomass and dead organic mater (DOM) turnover, decay, and soil mixing are either at the provincial/territorial, ecozone (NEED TO DEFINE), or Canada-wide scale (see @kurz2009 Table 1). Note that parameters can easily be modified from their defaults in a [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) simulation.
+There are 19 carbon pools in [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) (Table 1). The carbon transfers are dictated by matrices (available in the defaults information) which specify the proportion of carbon moving from one pool ("source_pool" - this needs to be in our lexicon) to ("sink_pools" - this too). Matrices for growth are populated with the user-provided growth information and are the main change agent in the system. Default parameters for biomass and dead organic mater (DOM) turnover, decay, and soil mixing are either at the provincial/territorial, ecozone (NEED TO DEFINE), or Canada-wide scale (see @kurz2009 Table 1). Note that parameters can easily be modified from their defaults in a [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) simulation.
 
+*Table 1: Carbon pools in spadesCBM*
 | Pool | Description |
 |--------|------------------|
-| Input | |
+| Input |  |
 | Merch | Live stemwood of merchantable size  |
 | Foliage | Live foliage |
 | Other | Live branches, stumps, and small trees |
@@ -72,10 +75,10 @@ There are 20 carbon pools in [spadesCBM](https://github.com/PredictiveEcology/sp
 | BelowGroundSlowSoil | Humified organic matter in the mineral soil |
 | StemSnag | Dead standing stemwood of merchantable size including bark |
 | BranchSnag | Dead branches, stumps, and small trees including bark |
-| CO2 |  |
-| CH4 |  |
-| CO |  |
-| NO2 |  |
+| CO2 | CO2 emitted to atmosphere |
+| CH4 | CH4 emitted to atmosphere  |
+| CO | CO emitted to atmosphere  |
+| NO2 | NO2 emitted to atmosphere |
  
 
 ### Order of operations
