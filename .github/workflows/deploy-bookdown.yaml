@@ -56,11 +56,14 @@ jobs:
           r-version: release
           use-public-rspm: false
 
-       - uses: PredictiveEcology/actions/install-Require@v0.2
+      - uses: PredictiveEcology/actions/install-Require@v0.2
         with:
           GitTag: 'development'
 
-       - name: Install module package and other dependencies
+      - uses: PredictiveEcology/actions/install-SpaDES@v0.2
+
+      - uses: PredictiveEcology/actions/install-Rmd-pkgs@v0.2
+      - name: Install module package and other dependencies
         run: |
           pkgs <- unlist(SpaDES.core::packages(modules = list.files("./modules"),
           paths = "./modules"))
