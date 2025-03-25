@@ -12,7 +12,7 @@ biblatexoptions: [refsegment=chapter]
 link-citations: true
 ---
 
-# Overview
+# Overview  {-}
 
 :::{.rmdimportant}
 This documentation is work in progress. Potential discrepancies and omissions may exist for the time being. If you find any, contact us [here]("https://github.com/PredictiveEcology/spadesCBM/issues").
