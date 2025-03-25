@@ -7,12 +7,21 @@ title: "spadesCBM Lexicon"
 # Lexicon
 If this is your first time encountering a model built within the SpaDES framework, you may be unfamiliar with several terms used in this manual. Here we offer a lexicon to help familiarize users with terms and concepts relevant to spadesCBM. A more comprehensive guide and introduction to robust and nimble scientific workflows using SpaDES can be found [here](https://predictiveecology.org/training/_book/).
 
-## Basic concepts
-Modules -
-Events -
-Functions -
-Simlist - 
-Events -
-spinup -
-setupProject() -
-simInitAndSpades2() -
+## Basic SpaDES concepts
+Modules 
+Events
+Functions 
+Simlist 
+Events 
+spinup 
+setupProject() 
+simInitAndSpades2() 
+.inputObjects()
+prepInputs()
+
+## spadesCBM terms
+source_pool
+sink_pool
+CBM-CFS3 vs spadesCBM
+pixelGroups
+ecozone/spatial units
