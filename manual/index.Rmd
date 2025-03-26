@@ -22,7 +22,7 @@ This documentation is work in progress. Potential discrepancies and omissions ma
 
 The collection of [SpaDES](https://SpaDES.PredictiveEcology.org) modules in [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) was developed to enable R&D input to the Canadian Forest Service ([CFS](https://natural-resources.canada.ca/climate-change/climate-change-impacts-forests/carbon-budget-model)) forest carbon reporting system, [NFCMARS](https://natural-resources.canada.ca/climate-change/forest-carbon/canada-s-forest-carbon-reporting-system). The CFS provides science backing for Canadian policies on national forest issues. [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) is a nimble tool in which new science, data and algorithms can be tested and explored to serve policy purposes. [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) development follows the PERFICT approach of @mcintire2022 for ecological modelling systems. The [SpaDES](https://SpaDES.PredictiveEcology.org) platform is the toolkit that enables this implementation of the PERFICT principle, a recipe to build nimble systems that help solve many ecological modelling issues.
 
-## Usage 
+## Usage {-}
 
 Four [modules](https://predictiveecology.github.io/spadesCBM/lexicon.html) need to be run in tandem for a [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) simulation. 
 The first module, [CBM_defaults](https://github.com/PredictiveEcology/CBM_defaults.git), reads in defaults CBM parameters for Canada.  
@@ -43,17 +43,17 @@ Maybe we insert a `moduleDiagram` ?
 
 Several core utilities to [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) are provided by the [`CBMutils`](https://github.com/PredictiveEcology/CBMutils/tree/development) package, available on GitHub. Active development in [`CBMutils`](https://github.com/PredictiveEcology/CBMutils/tree/development) and all [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) modules is underway.
 
-## The Carbon Budget Model in SpaDES
+## The Carbon Budget Model in SpaDES {-}
 
 The Carbon Budget Model ([CBM](https://natural-resources.canada.ca/climate-change/climate-change-impacts-forests/carbon-accounting/carbon-budget-model/13107)) was first developed in the early 1990s (@kurz1993). Its implementation in a platform for model inter-operability and nimbleness such as [SpaDES](https://SpaDES.PredictiveEcology.org) warrants an overview. 
 
 [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) simulates forest carbon dynamics for a given study area based on Canadian-parameterization and user-provided growth and inventory information. Default Canadian parameters are read-in ([CBM_defaults](https://github.com/PredictiveEcology/CBM_defaults.git)), matched to the user-provided information ([CBM_dataPrep_SK](https://github.com/PredictiveEcology/CBM_dataPrep_SK.git) and [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git)), and this information drives the carbon-transfers through the simulations ([CBM_core](https://github.com/PredictiveEcology/CBM_core.git)).
 
-### Input requirements
+### Input requirements {-}
 
 [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) simulations require study area information, age, and leading species of each stand or pixel to simulate on the landscape, and growth information for each stand or pixel. Users can provide this information in various format which is processed in [CBM_dataPrep_SK](https://github.com/PredictiveEcology/CBM_dataPrep_SK.git) and in [CBM_vol2biomass](https://github.com/PredictiveEcology/CBM_vol2biomass.git). We suggest users modify the example provided to represent their study area and inventory information.
 
-### Pools
+### Pools {-}
 
 There are 19 carbon pools in [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) (Table 1). The carbon transfers are dictated by matrices (available in the defaults information) which specify the proportion of carbon moving from one pool ("source_pool" - this needs to be in our lexicon) to ("sink_pools" - this too). Matrices for growth are populated with the user-provided growth information and are the main change agent in the system. Default parameters for biomass and dead organic mater (DOM) turnover, decay, and soil mixing are either at the provincial/territorial, ecozone (NEED TO DEFINE), or Canada-wide scale (see @kurz2009 Table 1). Note that parameters can easily be modified from their defaults in a [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) simulation.
 
@@ -82,7 +82,7 @@ There are 19 carbon pools in [spadesCBM](https://github.com/PredictiveEcology/sp
 | NO2 | NO2 emitted to atmosphere |
  
 
-### Order of operations
+### Order of operations {-}
 
 In simulations, disturbances occur before any other carbon-transfer. After the disturbances, half of the growth (determined by increments in the user-provided growth curve) is applied followed by the transfers representing DOM turnover, live biomass turnover, an overmature decline compensation if applicable, the 2nd half of the growth, DOM decay, slow decay and slow soil mixing. Addition to the system only come from the atmosphere (amount determined by growth), and carbon exists the system to the atmosphere or to the forest products sector (ADD A FIGURE HERE MODIFICATION OF CBM_slide.ppt). Transfers are proportions of a source pool to sink pools and proportions add up to 1, so no carbon is lost.
 
@@ -97,12 +97,12 @@ domdecay
 slowdecay
 slowmixing
 
-### The `spinup` function
+### The `spinup` function {-}
 
 The amount of carbon below ground in forests is extremely variable and consequently there are few data that can provide this information at scales greater then plot levels (REFS). To compensate for this gap in knowledge and data, prior to a simulation, [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) completes a process that populates below ground pools. This process is called a **spinup** and it is the first [event](SpaDES speak) in the [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) module. The procedure consists of growing and burning forest stand, according to the provided growth curves and default values for fire return intervals (provided in [CBM_defaults](https://github.com/PredictiveEcology/CBM_defaults.git)) until the below ground carbon pool stabilize or reach a predefined number of simulations. The choice of a fire disturbance matche the historical forest disturbance for most forests in Canada. We consider this procedure a place holder until our knowledge of below ground carbon dynamics improves. Although it will likely be resulting in errors in absolute carbon stocks (see @boisvenue2022 Appendix 4), these should be systematic errors and we can at at least simulate the trends in carbon stocks and fluxes. Research has compared below ground stocks values (@shaw??) and work continues to improve parameters (@hararuk2017 ?).
 
 
-## Setup
+## Setup {-}
 
 In this example, we setup the workflow using the
 [`SpaDES.project`](https://spades-project.predictiveecology.org/) package and
@@ -133,7 +133,7 @@ If the Python installation process fails or you would prefer to manually install
 
 :::
 
-## Run Example Simulation
+## Run Example Simulation {-}
 
 Here is the R script to run the simulation of forest carbon dynamics in the managed forests of SK from 1985 to 2012, with disturbances as presented in @boisvenue2016. Depending on your computing capacity, this may take a while, particularly the first time you run it. Subsequent simulations are much faster because of the use of the [reproducible::Cache](https://cran.r-project.org/web/packages/SpaDES.core/vignettes/iii-cache.html) function.
 
