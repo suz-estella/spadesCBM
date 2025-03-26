@@ -87,4 +87,4 @@ out <- SpaDES.project::setupProject(
 )
 
 # Run
-simPython <- SpaDES.core::simInitAndSpades2(out)
+simMngedSK <- SpaDES.core::simInitAndSpades2(out)
