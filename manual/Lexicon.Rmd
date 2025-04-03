@@ -18,6 +18,7 @@ setupProject()
 simInitAndSpades2() 
 .inputObjects()
 prepInputs()
+Explain basic structure of the folders in a SpaDES project.
 
 ## spadesCBM terms {-}
 source_pool
