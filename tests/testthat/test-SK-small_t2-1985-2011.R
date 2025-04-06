@@ -113,6 +113,7 @@ test_that("SK-small 1985-2011", {
       moduleTest  = "CBM_core",
       eventExpect = c(
         "init"              = times$start,
+        "spinup"            = times$start,
         "postSpinup"        = times$start,
         setNames(times$start:times$end, rep("annual", length(times$star:times$end))),
         "accumulateResults" = times$end
