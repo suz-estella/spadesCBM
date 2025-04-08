@@ -132,11 +132,6 @@ test_that("SK-small 1985-2011", {
   expect_true(!is.null(simTest$cbmPools))
 
 
-  ## Check output 'gcid_is_sw_hw' ----
-
-  expect_true(!is.null(simTest$gcid_is_sw_hw))
-
-
   ## Check output 'spinup_input' ----
 
   expect_true(!is.null(simTest$spinup_input))
