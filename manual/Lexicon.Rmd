@@ -61,3 +61,6 @@ A more in-depth description of pixel groups in spadesCBM can be found here(this 
 ### source_pool and sink_pool
 
 
+
+## carbon terms?
+NPP - Net Primary Productivity
