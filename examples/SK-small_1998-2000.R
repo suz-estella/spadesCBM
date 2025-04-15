@@ -40,33 +40,7 @@
     ),
 
     # Set packages required for set up
-    require = c("PredictiveEcology/CBMutils@development (>=2.0)", "reticulate",
-                "reproducible", "terra"),
-
-    # Set up Python
-    ret = {
-      reticulate::virtualenv_create(
-        "r-spadesCBM",
-        python = if (!reticulate::virtualenv_exists("r-spadesCBM")){
-          CBMutils::ReticulateFindPython(
-            version        = ">=3.9,<=3.12.7",
-            versionInstall = "3.10:latest"
-          )
-        },
-        packages = c(
-          "numpy<2",
-          "pandas>=1.1.5",
-          "scipy",
-          "numexpr>=2.8.7",
-          "numba",
-          "pyyaml",
-          "mock",
-          "openpyxl",
-          "libcbm"
-        )
-      )
-      reticulate::use_virtualenv("r-spadesCBM")
-    },
+    require = c("reproducible", "terra"),
 
     # Set input: Study area
     masterRaster = {
