@@ -1,7 +1,7 @@
 
 ## this manual must be knitted by running this script
 
-prjDir <- SpaDES.project::findProjectPath() #this might not be needed.
+prjDir <- rprojroot::find_root(rprojroot::is_rstudio_project | rprojroot::is_git_root | rprojroot::from_wd, path = getwd())
 manDir <- file.path(prjDir, "manual")
 
 docsDir <- file.path(manDir, "_bookdown.yml") |>

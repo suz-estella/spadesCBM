@@ -56,7 +56,22 @@ jobs:
           r-version: release
           use-public-rspm: false
 
-      - uses: r-lib/actions/setup-renv@v2
+      - uses: PredictiveEcology/actions/install-Require@v0.2
+        with:
+          GitTag: 'development'
+
+      - uses: PredictiveEcology/actions/install-SpaDES@v0.2
+
+      - uses: PredictiveEcology/actions/install-Rmd-pkgs@v0.2
+      - name: Install module package and other dependencies
+        run: |
+          pkgs <- unlist(SpaDES.core::packages(modules = list.files("./modules"),
+          paths = "./modules"))
+          pkgs <- Require::pkgDep2(pkgs)
+          Require::Require(c("rprojroot", "bibtex", "bookdown", "data.table", "downlit", "RefManageR","formatR", "knitr", "PredictiveEcology/SpaDES.docs"))
+          Require::Require(pkgs)
+
+        shell: Rscript {0}
 
       - name: Cache bookdown results
         uses: actions/cache@v3

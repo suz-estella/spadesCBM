@@ -1,11 +1,15 @@
 ---
 title: "CBMutils"
-subtitle: "`r paste('v.', Sys.getenv('SpadesCBM_MAN_VERSION'))`"
-author: ""
-date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-documentclass: book
-  chunk_output_type: console
 ---
 ```{r setup-CBMutils, include = FALSE}
 ```
+
+# CBMutils  {-}
+
+:::{.rmdimportant}
+This documentation is work in progress. Potential discrepancies and omissions may exist for the time being. If you find any regarding this module, contact us [here]("https://github.com/PredictiveEcology/CBMutils/issues").
+:::
+
+[`CBMutils`](https://github.com/PredictiveEcology/CBMutils/tree/development) is a package available on GitHub. It provides several core utilities to [spadesCBM](https://github.com/PredictiveEcology/spadesCBM). As with [spadesCBM](https://github.com/PredictiveEcology/spadesCBM) and its modules, development is ongoing. 
+
+## Notable functions and usage  {-}
