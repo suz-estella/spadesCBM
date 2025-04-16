@@ -26,8 +26,7 @@ out <- SpaDES.project::setupProject(
                "PredictiveEcology/CBM_vol2biomass@development",
                "PredictiveEcology/CBM_core@development"),
   times = times,
-  require = c("PredictiveEcology/CBMutils@development (>=2.0)", "reticulate",
-              "reproducible"),
+  require = c("reproducible"),
 
   params = list(
     CBM_defaults = list(
@@ -41,34 +40,10 @@ out <- SpaDES.project::setupProject(
     )
   ),
 
-  ret = {
-    reticulate::virtualenv_create(
-      "r-spadesCBM",
-      python = if (!reticulate::virtualenv_exists("r-spadesCBM")){
-        CBMutils::ReticulateFindPython(
-          version        = ">=3.9,<=3.12.7",
-          versionInstall = "3.10:latest"
-        )
-      },
-      packages = c(
-        "numpy<2",
-        "pandas>=1.1.5",
-        "scipy",
-        "numexpr>=2.8.7",
-        "numba",
-        "pyyaml",
-        "mock",
-        "openpyxl",
-        "libcbm"
-      )
-    )
-    reticulate::use_virtualenv("r-spadesCBM")
-  },
-
   #### begin manually passed inputs #########################################
   ## define the  study area.
   masterRaster = {
-    mr <- reproducible::prepInputs(url = "https://drive.google.com/file/d/1zUyFH8k6Ef4c_GiWMInKbwAl6m6gvLJW/view?usp=drive_link",
+    mr <- reproducible::prepInputs(url = "https://drive.google.com/file/d/1zUyFH8k6Ef4c_GiWMInKbwAl6m6gvLJW",
                                    destinationPath = "inputs")
     mr[mr[] == 0] <- NA
     mr
@@ -76,12 +51,10 @@ out <- SpaDES.project::setupProject(
 
   disturbanceRastersURL = "https://drive.google.com/file/d/12YnuQYytjcBej0_kdodLchPg7z9LygCt",
 
-  outputs = as.data.frame(expand.grid(objectName = c("cbmPools", "NPP"),
-                                      saveTime = sort(c(times$start,
-                                                        times$start +
-                                                          c(1:(times$end - times$start))
-                                      )))),
-
+  outputs = as.data.frame(expand.grid(
+    objectName = c("cbmPools", "NPP"),
+    saveTime = sort(c(times$start, times$start + c(1:(times$end - times$start))))
+  ))
 )
 
 # Run

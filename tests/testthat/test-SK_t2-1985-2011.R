@@ -33,33 +33,6 @@ test_that("SK 1985-2011", {
         outputPath  = file.path(projectPath, "outputs")
       ),
 
-      require = c("PredictiveEcology/CBMutils@development (>=2.0)", "reticulate"),
-
-      ret = {
-
-        reticulate::virtualenv_create(
-          "r-spadesCBM",
-          python = if (!reticulate::virtualenv_exists("r-spadesCBM")){
-            CBMutils::ReticulateFindPython(
-              version        = ">=3.9,<=3.12.7",
-              versionInstall = "3.10:latest"
-            )
-          },
-          packages = c(
-            "numpy<2",
-            "pandas>=1.1.5",
-            "scipy",
-            "numexpr>=2.8.7",
-            "numba",
-            "pyyaml",
-            "mock",
-            "openpyxl",
-            "libcbm"
-          )
-        )
-        reticulate::use_virtualenv("r-spadesCBM")
-      },
-
       outputs = as.data.frame(expand.grid(
         objectName = c("cbmPools", "NPP"),
         saveTime   = sort(c(times$start, times$start + c(1:(times$end - times$start))))
