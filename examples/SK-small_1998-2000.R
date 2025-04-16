@@ -111,17 +111,17 @@
 ## Review results ----
 
   # View completed events
-  completed(simCBM)
+  SpaDES.core::completed(simCBM)
 
   # View outputs
-  outputs(simCBM)
+  SpaDES.core::outputs(simCBM)
 
   # View module diagram
-  moduleDiagram(simCBM)
+  SpaDES.core::moduleDiagram(simCBM)
 
   # View object diagram
   Require::Require("DiagrammeR")
-  objectDiagram(simCBM)
+  SpaDES.core::objectDiagram(simCBM)
 
   # Plot yearly forest products and yearly emissions for the length of the simulation
   CBMutils::carbonOutPlot(
@@ -145,7 +145,7 @@
     masterRaster = simCBM$masterRaster,
     spatialDT    = simCBM$spatialDT,
     cbmPools     = simCBM$cbmPools,
-    years        = end(simCBM)
+    years        = SpaDES.core::end(simCBM)
   )
 
 
