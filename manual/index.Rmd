@@ -38,7 +38,11 @@ We are working on various implementations of this modelling system and making th
 We hope others will do the same. 
 A smaller study area extent simulation of [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) is available in the [SpaDES](https://SpaDES.PredictiveEcology.org) [training manual](https://predictiveecology.org/training/_book/spadesCBMDemo.html).
 
-insert a `moduleDiagram` 
+We can use the SpaDES.core generated `moduleDiagram`
+![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/spadesCBMmoduleDiagram.png){fig-align="center" width="500"}
+Or a version of my hex diagrams
+![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/spadesCBM_HexV1.png){fig-align="center" width="500"}
+
 
 Several core utilities to [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) are provided by the [`CBMutils`](https://github.com/PredictiveEcology/CBMutils/tree/development) package, available on GitHub. The [SpaDES](https://SpaDES.PredictiveEcology.org) platform has a much broader scope then our use of it in [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git). We provide some basic [SpaDES](https://SpaDES.PredictiveEcology.org) definitions [here](https://predictiveecology.github.io/spadesCBM/lexicon.html) so that users can perform [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) simulations without having to learn all the [SpaDES](https://SpaDES.PredictiveEcology.org) capacities. [`CBMutils`](https://github.com/PredictiveEcology/CBMutils/tree/development) functions used in our example are listed with a brief explanation in [this](https://predictiveecology.github.io/spadesCBM/CBMutils.html) subsequent section. Active development in [`CBMutils`](https://github.com/PredictiveEcology/CBMutils/tree/development) and all [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) modules is underway.
 
