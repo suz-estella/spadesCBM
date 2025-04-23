@@ -63,3 +63,5 @@ A more in-depth description of pixel groups in spadesCBM can be found here(this 
 
 ### Net Primary Productivity (NPP)
 NPP is defined as the amount of CO~2~ removed from the atmosphere and absorbed by the forest to maintain itself. 
+
+### cbmPools
