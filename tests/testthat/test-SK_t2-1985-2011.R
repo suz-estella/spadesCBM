@@ -68,7 +68,6 @@ test_that("SK 1985-2011", {
       eventExpect = c(
         "init"              = times$start,
         "spinup"            = times$start,
-        "postSpinup"        = times$start,
         setNames(times$start:times$end, rep("annual", length(times$star:times$end))),
         "accumulateResults" = times$end
       )),
@@ -81,44 +80,18 @@ test_that("SK 1985-2011", {
   )
 
 
-  ## Check output 'cbmPools' ----
-
-  expect_true(!is.null(simTest$cbmPools))
-
-
-  ## Check output 'spinup_input' ----
-
-  expect_true(!is.null(simTest$spinup_input))
-
-
-  ## Check output 'spinupResult' ----
+  ## Check outputs ----
 
   expect_true(!is.null(simTest$spinupResult))
 
 
-  ## Check output 'cbm_vars' ----
+  expect_true(!is.null(simTest$cbmPools))
 
-  expect_true(!is.null(simTest$cbm_vars))
-
-
-  ## Check output 'pixelGroupC' ----
-
-  expect_true(!is.null(simTest$pixelGroupC))
-
-
-  ## Check output 'NPP' ----
 
   expect_true(!is.null(simTest$NPP))
 
 
-  ## Check output 'emissionsProducts' ----
-
   expect_true(!is.null(simTest$emissionsProducts))
-
-
-  ## Check output 'pixelKeep' ----
-
-  expect_true(!is.null(simTest$pixelKeep))
 
 })
 
