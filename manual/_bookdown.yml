@@ -9,7 +9,6 @@ delete_merged_file: true
 rmd_files:
   - index.Rmd
   - Lexicon.Rmd
-  - CBMutils.Rmd
   - ../modules//CBM_defaults/CBM_defaults.Rmd
   - ../modules/CBM_dataPrep_SK/CBM_dataPrep_SK.Rmd
   - ../modules/CBM_vol2biomass/CBM_vol2biomass.Rmd

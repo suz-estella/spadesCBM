@@ -38,14 +38,9 @@ We are working on various implementations of this modelling system and making th
 We hope others will do the same. 
 A smaller study area extent simulation of [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) is available in the [SpaDES](https://SpaDES.PredictiveEcology.org) [training manual](https://predictiveecology.org/training/_book/spadesCBMDemo.html).
 
-We can use the SpaDES.core generated `moduleDiagram`
-![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/spadesCBMmoduleDiagram.png){fig-align="center" width="500"}
+*Figure 1: `moduleDiagram` of spadesCBM*
 
-Or a version of my hex diagrams
-
-![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/spadesCBM_HexV1.png){fig-align="center" width="500"}
-
-
+![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/spadesCBMmoduleDiagram.png){fig-align="center" width="700"}
 Several core utilities to [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) are provided by the [`CBMutils`](https://github.com/PredictiveEcology/CBMutils/tree/development) package, available on GitHub. The [SpaDES](https://SpaDES.PredictiveEcology.org) platform has a much broader scope then our use of it in [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git). We provide some basic [SpaDES](https://SpaDES.PredictiveEcology.org) definitions [here](https://predictiveecology.github.io/spadesCBM/lexicon.html) so that users can perform [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) simulations without having to learn all the [SpaDES](https://SpaDES.PredictiveEcology.org) capacities. [`CBMutils`](https://github.com/PredictiveEcology/CBMutils/tree/development) functions used in our example are listed with a brief explanation in [this](https://predictiveecology.github.io/spadesCBM/CBMutils.html) subsequent section. Active development in [`CBMutils`](https://github.com/PredictiveEcology/CBMutils/tree/development) and all [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git) modules is underway.
 
 ## The Carbon Budget Model in SpaDES {-}
@@ -88,9 +83,11 @@ There are 18 internal carbon pools in [spadesCBM](https://github.com/PredictiveE
 
 ### Order of operations {-}
 
-In simulations, disturbances occur before any other carbon-transfer. After the disturbances, half of the growth (determined by increments in the user-provided growth curve) is applied followed by the transfers representing DOM turnover, live biomass turnover, an overmature decline compensation if applicable, the 2nd half of the growth, DOM decay, slow decay and slow soil mixing. AS previously stated, carbon additions to the system come from the atmosphere (amount determined by growth via user-provided growth curves), and carbon exists the system to the atmosphere or to the forest products sector (**ADD A FIGURE HERE MODIFICATION OF CBM_slide.ppt**). 
+In simulations, disturbances occur before any other carbon-transfer. After the disturbances, half of the growth (determined by increments in the user-provided growth curve) is applied followed by the transfers representing DOM turnover, live biomass turnover, an overmature decline compensation if applicable, the 2nd half of the growth, DOM decay, slow decay and slow soil mixing. AS previously stated, carbon additions to the system come from the atmosphere (amount determined by growth via user-provided growth curves), and carbon exists the system to the atmosphere or to the forest products sector. 
 
-![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/cbm_ppt_figure.png){fig-align="center" width="500"}
+*Figure 2: Carbon pools and transfers diagram in spadesCBM (CHANGE TO EDITED VERSION)*
+
+![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/cbm_ppt_figure.png){fig-align="center" width="700"}
 
 Transfers are proportions of a source pool to sink pools and proportions add up to 1, so no carbon is lost.
 
