@@ -1,10 +1,10 @@
 ---
-  title: "Example: All managed forests in Saskatchewan"
+  title: "spadesCBM Manual"
 ---
   
 ```{r setup-example, include = FALSE}
 ```
-# Example: Running spadesCBM for all managed forests of Saskatchewan {-}
+# Example: spadesCBM in Saskatchewan {-}
 Here we provide an example script to run all managed forests in Saskatchewan. This example is fairly lightweight and most computers should be able to run the simulation. 
 
 In this example, we setup the workflow using the
@@ -15,17 +15,17 @@ current versions of the [spadesCBM](https://github.com/PredictiveEcology/spadesC
 ## Setup {-}
 A few things need to be set up the first time running spadesCBM. While the global script below will take care and guide you through most of these, here are some things to note during the initial set up. 
 
-### Google account needed for this example {-}
+### Google account {-}
 
 To run the provided example, users need to access some of the data using the [googledrive](https://cloud.r-project.org/web/packages/googledrive/index.html) R package (part of the [tidyverse](https://www.tidyverse.org/) family of R packages). 
 During the [simInit()](https://spades-core.predictiveecology.org/reference/simInit.html) (or [simInitAndSpades](https://rdrr.io/cran/SpaDES.core/man/simInitAndSpades.html)) call, a function to initialize (or initialize and run) [SpaDES](https://SpaDES.PredictiveEcology.org)-based simulations, R will prompt you to either choose a previously authenticated account (if you have previously used [googledrive](https://cloud.r-project.org/web/packages/googledrive/index.html)) or to open a browser window and authenticate. 
 
 Make sure you give [tidyverse](https://www.tidyverse.org/) read/write access to your files:
   
-![](https://github.com/PredictiveEcology/PredictiveEcology.org/blob/main/training/assets/img/gdriveauth.png?raw=true){fig-align="center" width="467"}
+![](https://github.com/PredictiveEcology/PredictiveEcology.org/blob/main/training/assets/img/gdriveauth.png?raw=true){fig-align="center" width="500"}
 
   
-### Python is required for this example {-}
+### Python {-}
 
 The [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) module, which is the simulation module of [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git), requires Python >=3.9 and <=3.12.7.
 
@@ -39,7 +39,7 @@ If the Python installation process fails or you would prefer to manually install
   
 ## Running the simulation {-}
   
-  Here is the R script to run the simulation of forest carbon dynamics in the managed forests of SK from 1985 to 2011, with disturbances as presented in @boisvenue2016. Depending on your computing capacity, this may take a while, particularly the first time you run it. Subsequent simulations are much faster because of the use of the [reproducible::Cache](https://cran.r-project.org/web/packages/SpaDES.core/vignettes/iii-cache.html) function.
+  Here is an R script to run the simulation of forest carbon dynamics in the managed forests of SK from 1985 to 2011, with disturbances as presented in @boisvenue2016. Depending on your computing capacity, this may take a while, particularly the first time you run it. Subsequent simulations are much faster because of the use of the [reproducible::Cache](https://cran.r-project.org/web/packages/SpaDES.core/vignettes/iii-cache.html) function.
 
 ```
 # set project paths and install packages
@@ -57,7 +57,7 @@ out <- SpaDES.project::setupProject(
   useGit = "PredictiveEcology", # a developer sets and keeps this = TRUE
   overwrite = TRUE, # a user who wants to get latest modules sets this to TRUE
   paths = list(projectPath = projectPath),
-  
+
   options = options(
     repos = c(repos = repos),
     Require.cloneFrom = Sys.getenv("R_LIBS_USER"),
@@ -72,8 +72,8 @@ out <- SpaDES.project::setupProject(
                "PredictiveEcology/CBM_vol2biomass@development",
                "PredictiveEcology/CBM_core@development"),
   times = times,
-  require = c("PredictiveEcology/CBMutils@development (>=2.0)", "reticulate", "reproducible"),
-  
+  require = c("reproducible"),
+
   params = list(
     CBM_defaults = list(
       .useCache = TRUE
@@ -85,48 +85,22 @@ out <- SpaDES.project::setupProject(
       .useCache = TRUE
     )
   ),
-  
-  ret = {
-    reticulate::virtualenv_create(
-      "r-spadesCBM",
-      python = if (!reticulate::virtualenv_exists("r-spadesCBM")){
-        CBMutils::ReticulateFindPython(
-          version        = ">=3.9,<=3.12.7",
-          versionInstall = "3.10:latest"
-        )
-      },
-      packages = c(
-        "numpy<2",
-        "pandas>=1.1.5",
-        "scipy",
-        "numexpr>=2.8.7",
-        "numba",
-        "pyyaml",
-        "mock",
-        "openpyxl",
-        "libcbm"
-      )
-    )
-    reticulate::use_virtualenv("r-spadesCBM")
-  },
-  
+
   #### begin manually passed inputs #########################################
   ## define the  study area.
   masterRaster = {
-    mr <- reproducible::prepInputs(url = "https://drive.google.com/file/d/1zUyFH8k6Ef4c_GiWMInKbwAl6m6gvLJW/view?usp=drive_link",
+    mr <- reproducible::prepInputs(url = "https://drive.google.com/file/d/1zUyFH8k6Ef4c_GiWMInKbwAl6m6gvLJW",
                                    destinationPath = "inputs")
     mr[mr[] == 0] <- NA
     mr
   },
-  
+
   disturbanceRastersURL = "https://drive.google.com/file/d/12YnuQYytjcBej0_kdodLchPg7z9LygCt",
-  
-  outputs = as.data.frame(expand.grid(objectName = c("cbmPools", "NPP"),
-                                      saveTime = sort(c(times$start,
-                                                        times$start +
-                                                          c(1:(times$end - times$start))
-                                      )))),
-  
+
+  outputs = as.data.frame(expand.grid(
+    objectName = c("cbmPools", "NPP"),
+    saveTime = sort(c(times$start, times$start + c(1:(times$end - times$start))))
+  ))
 )
 
 # Run simulation
