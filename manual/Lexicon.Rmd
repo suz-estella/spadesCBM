@@ -11,7 +11,7 @@ If this is your first time encountering a model built within the SpaDES framewor
 
 ## Basic structure of a SpaDES project {-}
 
-SpaDES projects aim to follow the principles of repeatability, reproducibility, reusability, and transparency.  
+SpaDES projects aim to follow the principles of the PERFICT approach of @mcintire2022. The PERFICT approach aims to *P*redict regularly frm models that are *E*valuated, *R*eusable, *F*reely accessible, and *I*nteroperable, and that are part of *C*ontinuous workflows that are *T*ested regularly. More information on how this approach fits within the SpaDES framework can be found [here](https://predictiveecology.org/training/_book/intro.html).  
 Using modules allows us to break up a model's code into meaningful themes and/or uses that can easily be moved, swapped or replaced. SpaDES projects use modules in its standardized structure to allow for this nimbleness. Each module defines its own metadata, identifying the inputs and outputs of the code, allowing R to connect the module with others.
 
 ### Modules {-}
@@ -29,6 +29,9 @@ This function is found at the end of a module's script. This is where default in
 ### Simlist {-}
 Objects cannot be shared across modules unless they are added to the simlist. It is a rich data object that acts like a list or an environment. All ouputs of a module or model are added to this simlist. 
 
+### `prepInputs()`
+
+
 ## Running a global script {-}
 ### The `setupProject()` function {-}
 `setupProject()` is a function in the `SpaDES.project` package. It allows the user to set a variety of options before running. When run, `setupProject` does a series of very specific things in a particular order to reduce the chances of package conflicts and user errors. 
@@ -40,8 +43,6 @@ Once we have run our `setupProject()` call, we can run our model using `simInitA
 
 ### Folder structure of a SpaDES module {-}
 Our spadesCBM modules use the basic folder structure for all SpaDES modules. Each have their respective `.R` scripts, an `.Rmd` file with their documentation used in this manual, and a `tests` folder containing the module's tests. Some will also have an `R` folder containing other scripts that get sourced when running the module. These can include basic functions used in the module or the creation of default objects only used when the user doesn't provide a specific input.
-
-`prepInputs()`
 
 ## spadesCBM and carbon terms {-}
 ### CBM-CFS3 vs spadesCBM
