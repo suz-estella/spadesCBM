@@ -43,7 +43,7 @@ Our spadesCBM modules use the basic folder structure for all SpaDES modules. Eac
 
 `prepInputs()`
 
-## spadesCBM terms {-}
+## spadesCBM and carbon terms {-}
 ### CBM-CFS3 vs spadesCBM
 
 
@@ -61,6 +61,5 @@ A more in-depth description of pixel groups in spadesCBM can be found here(this 
 ### source_pool and sink_pool
 
 
-
-## carbon terms?
-NPP - Net Primary Productivity
+### Net Primary Productivity (NPP)
+NPP is defined as the amount of CO~2~ removed from the atmosphere and absorbed by the forest to maintain itself. 
