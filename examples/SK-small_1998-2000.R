@@ -104,20 +104,20 @@
 
   # Plot carbon proportions above and below ground each simulation year
   CBMutils::barPlot(
-    cbmPools = simCBM$cbmPools
+    cbmPools = cbind(simCBM$cbmPools, pixelCount = simCBM$cbmPools$N)
   )
 
   # Plots the per-pixel average net primary production
   CBMutils::NPPplot(
     masterRaster = simCBM$masterRaster,
-    spatialDT    = simCBM$spatialDT,
+    spatialDT    = simCBM$pixelKeep,
     NPP          = simCBM$NPP
   )
 
   # Plot the Total Carbon per pixel for the final simulation year
   CBMutils::spatialPlot(
     masterRaster = simCBM$masterRaster,
-    spatialDT    = simCBM$spatialDT,
+    spatialDT    = simCBM$pixelKeep,
     cbmPools     = simCBM$cbmPools,
     years        = SpaDES.core::end(simCBM)
   )
