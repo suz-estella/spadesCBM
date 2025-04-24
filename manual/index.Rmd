@@ -88,7 +88,7 @@ In simulations, disturbances occur before any other carbon transfer. After the d
 
 ![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/cbm_ppt_edited.png){fig-align="center" width="700"}
 
-*Figure 2: Carbon pools and transfers diagram in spadesCBM (CHANGE TO EDITED VERSION)*
+*Figure 2: Carbon pools and transfers diagram in spadesCBM*
 
 Transfers are proportions of a source pool to sink pools and proportions add up to 1, so no carbon is lost.
 
