@@ -24,7 +24,7 @@ out <- SpaDES.project::setupProject(
   modules =  c("PredictiveEcology/CBM_defaults@main",
                "PredictiveEcology/CBM_dataPrep_SK@main",
                "PredictiveEcology/CBM_vol2biomass@main",
-               "PredictiveEcology/CBM_core@devemainlopment"),
+               "PredictiveEcology/CBM_core@main"),
   times = times,
   require = c("reproducible"),
 
