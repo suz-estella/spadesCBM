@@ -55,9 +55,9 @@ A more in-depth explanation of the spinup function can be found [here](https://p
 In Canada, there are 15 distinct terrestrial ecozones. spadesCBM uses this classification. These represent large ecosystems with specific climate and vegetation, regardless of jurisdiction.  
 Spatial units are more specific than ecozones, and correspond to the unique combination of jurisdiction (i.e. province or territory) and ecozone. 
 
-### Pixel groups
-To simplify and optimize our simulations, we group individual pixels into `pixelGroups` in which each group corresponds to a unique set of age, growth curve, spatial unit, and ecozone. 
-A more in-depth description of pixel groups in spadesCBM can be found [here](https://predictiveecology.github.io/spadesCBM/cbm_core.html#pixel-groups-1). 
+### Cohort groups
+To simplify and optimize our simulations, we group individual pixels into `cohortGroupID` in which each group corresponds to a unique set of age, growth curve, spatial unit, and ecozone. 
+A more in-depth description of cohort groups in spadesCBM can be found [here](https://predictiveecology.github.io/spadesCBM/cbm_core.html#pixel-groups-1). 
 
 ### source_pool and sink_pool
 Every carbon transfers in spadesCBM occurs between two pools. One pool is the source and transfers its carbon to the sink. A specific pool is generally not tied to one or the other and can be a source in one carbon transfer and a sink in another.  in spadesCBM, this is calculated by proportions, with a proportion of one pool moving to another pool, with proportions adding to 1 so that no carbon is lost. 
