@@ -39,7 +39,7 @@ If the Python installation process fails or you would prefer to manually install
   
 ## Running the simulation {-}
   
-  Here is an R script to run the simulation of forest carbon dynamics in the managed forests of SK from 1985 to 2011, with disturbances as presented in @boisvenue2016. Depending on your computing capacity, this may take a while, particularly the first time you run it. Subsequent simulations are much faster because of the use of the [reproducible::Cache](https://cran.r-project.org/web/packages/SpaDES.core/vignettes/iii-cache.html) function.
+Here is an R script to run the simulation of forest carbon dynamics in the managed forests of SK from 1985 to 2011, with disturbances as presented in @boisvenue2016. Depending on your computing capacity, this may take a while, particularly the first time you run it. Subsequent simulations are much faster because of the use of the [reproducible::Cache](https://cran.r-project.org/web/packages/SpaDES.core/vignettes/iii-cache.html) function.
 
 ```
 # set project paths and install packages
@@ -67,10 +67,10 @@ out <- SpaDES.project::setupProject(
     # Require.offlineMode = TRUE,
     spades.moduleCodeChecks = FALSE
   ),
-  modules =  c("PredictiveEcology/CBM_defaults@development",
-               "PredictiveEcology/CBM_dataPrep_SK@development",
-               "PredictiveEcology/CBM_vol2biomass@development",
-               "PredictiveEcology/CBM_core@development"),
+  modules =  c("PredictiveEcology/CBM_defaults@main",
+               "PredictiveEcology/CBM_dataPrep_SK@main",
+               "PredictiveEcology/CBM_vol2biomass@main",
+               "PredictiveEcology/CBM_core@main"),
   times = times,
   require = c("reproducible"),
 
@@ -113,23 +113,32 @@ Once the simulation has run, we can view certain results. Some of these are save
 The `simMngedSK` object in R is the resulting [simlist](https://predictiveecology.github.io/spadesCBM/lexicon.html#simlist) of our simulation. `CBMutils` offers a few plotting functions to help visualize basic results using our simlist. 
 
 ```
-# Shows yearly forest products and emissions for each simulation year
+# Yearly forest products and emissions for each simulation year
 carbonPlot <- CBMutils::carbonOutPlot(
   emissionsProducts = simMngedSK$emissionsProducts
 )
+```
+![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/carbonPlot.png){fig-align="center" width="700"}
 
-# Shows proportions of carbon in above and below ground compartments
+```
+# Proportions of carbon in above and below ground compartments
 barplot <- CBMutils::barPlot(
   cbmPools = simMngedSK$cbmPools
 )
+```
+![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/bPlot.png){fig-align="center" width="700"}
 
+```
 # Map of pixel-level average NPP
 NppPlot <- CBMutils::NPPplot(
   spatialDT = simMngedSK$spatialDT,
   NPP = simMngedSK$NPP,
   masterRaster = simMngedSK$masterRaster
 )
+```
+![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/NPPplot.png){fig-align="center" width="700"}
 
+```
 # Map of total carbon per pixel for a simulation year
 spstialPlot <- sCBMutils::patialPlot(
   cbmPools = simMngedSK$cbmPools,
@@ -138,5 +147,5 @@ spstialPlot <- sCBMutils::patialPlot(
   spatialDT = simMngedSK$spatialDT
 )
 ```
-
+![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/spatialPlot.png){fig-align="center" width="700"}
 
