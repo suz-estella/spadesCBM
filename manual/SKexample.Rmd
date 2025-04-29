@@ -136,7 +136,7 @@ barplot <- CBMutils::barPlot(
 ```
 # Map of pixel-level average NPP
 NppPlot <- CBMutils::NPPplot(
-  spatialDT = simMngedSK$spatialDT,
+  cohortGroupKeep = simMngedSK$cohortGroupKeep,
   NPP = simMngedSK$NPP,
   masterRaster = simMngedSK$masterRaster
 )
@@ -149,7 +149,7 @@ spstialPlot <- sCBMutils::patialPlot(
   cbmPools = simMngedSK$cbmPools,
   years = 2000, # set simulation year 
   masterRaster = simMngedSK$masterRaster,
-  spatialDT = simMngedSK$spatialDT
+  cohortGroupKeep = simMngedSK$cohortGroupKeep
 )
 ```
 ![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/spatialPlot.png){fig-align="center" width="700"}
