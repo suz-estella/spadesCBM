@@ -76,6 +76,9 @@ jobs:
           # Do not restart RStudio
           options("SpaDES.project.Restart" = FALSE)
 
+          # Clone R packages
+          options("Require.cloneFrom" = Sys.getenv("R_LIBS_USER"))
+
           # Run examples
           exampleScripts <- list.files(file.path(getwd(), "examples"), pattern = "^SK[_-]+", full.names = TRUE)
           for (exampleScript in exampleScripts){
