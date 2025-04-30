@@ -77,17 +77,17 @@
 
   # Plots the per-pixel average net primary production
   CBMutils::NPPplot(
-    masterRaster = simCBM$masterRaster,
-    spatialDT    = simCBM$spatialDT,
-    NPP          = simCBM$NPP
+    masterRaster    = simCBM$masterRaster,
+    cohortGroupKeep = simCBM$cohortGroupKeep,
+    NPP             = simCBM$NPP
   )
 
   # Plot the Total Carbon per pixel for the final simulation year
   CBMutils::spatialPlot(
-    masterRaster = simCBM$masterRaster,
-    spatialDT    = simCBM$spatialDT,
-    cbmPools     = simCBM$cbmPools,
-    years        = SpaDES.core::end(simCBM)
+    masterRaster    = simCBM$masterRaster,
+    cohortGroupKeep = simCBM$cohortGroupKeep,
+    cbmPools        = simCBM$cbmPools,
+    years           = SpaDES.core::end(simCBM)
   )
 
 

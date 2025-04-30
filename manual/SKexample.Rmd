@@ -30,7 +30,7 @@ Make sure you give [tidyverse](https://www.tidyverse.org/) read/write access to 
 The [CBM_core](https://github.com/PredictiveEcology/CBM_core.git) module, which is the simulation module of [spadesCBM](https://github.com/PredictiveEcology/spadesCBM.git), requires Python >=3.9 and <=3.12.7.
 
 If a suitable version of Python does not already exist on your computer,
-[SpaDES.project::setupProject](https://spades-project.predictiveecology.org/reference/setupProject.html) will use the [`reticulate`](https://rstudio.github.io/reticulate/) package to install it using the [pyenv](https://github.com/pyenv/pyenv) or [pyenv-win](https://github.com/pyenv-win/pyenv-win).
+The [`reticulate`](https://rstudio.github.io/reticulate/) package will be used to install it using the [pyenv](https://github.com/pyenv/pyenv) or [pyenv-win](https://github.com/pyenv-win/pyenv-win).
 
 If you are using a Windows computer with Git installed, the [pyenv-win](https://github.com/pyenv-win/pyenv-win) tool will be acquired and managed directly by [`reticulate`](https://rstudio.github.io/reticulate/). If you are using a Windows computer without Git installed, you will be prompted to allow the [pyenv-win](https://github.com/pyenv-win/pyenv-win) tool to be downloaded directly from Github to your local user application data directory (`tools::R_user_dir("CBMutils")`).
 
@@ -145,7 +145,7 @@ NppPlot <- CBMutils::NPPplot(
 
 ```
 # Map of total carbon per pixel for a simulation year
-spstialPlot <- sCBMutils::patialPlot(
+spatialPlot <- CBMutils::patialPlot(
   cbmPools = simMngedSK$cbmPools,
   years = 2000, # set simulation year 
   masterRaster = simMngedSK$masterRaster,
