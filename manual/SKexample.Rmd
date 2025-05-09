@@ -123,7 +123,7 @@ carbonPlot <- CBMutils::carbonOutPlot(
   emissionsProducts = simMngedSK$emissionsProducts
 )
 ```
-![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/carbonPlot.png){fig-align="center" width="700"}
+![](https://raw.githubusercontent.com/PredictiveEcology/spadesCBM/main/manual/images/carbonOutPlot.png){fig-align="center" width="700"}
 
 ```
 # Proportions of carbon in above and below ground compartments
