@@ -12,12 +12,10 @@ download.file(
   tempScript, quiet = TRUE)
 source(tempScript)
 
-# Set up testing global options
+# Set up testing directories and global options
 SpaDEStestSetGlobalOptions()
+spadesTestPaths <- SpaDEStestSetUpDirectories(modulePath = NA)
 
-# Set up testing directories
-spadesTestPaths <- SpaDEStestSetUpDirectories(
-  modulePath  = "modules",
-  moduleRepos = getOption("spades.test.modules"),
-  require     = "googledrive"
-)
+# Install required packages
+withr::with_options(c(timeout = 600), Require::Install(c("SpaDES.project", "googledrive")))
+
