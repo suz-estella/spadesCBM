@@ -1,22 +1,5 @@
 
-## SET UP ----
-
-  # Install required packages
-  ## Required because module is not an R package
-  install.packages(
-    c("testthat", "SpaDES.core", "SpaDES.project"),
-    repos = unique(c("predictiveecology.r-universe.dev", getOption("repos"))))
-
-
 ## OPTIONS ----
-
-  # Test repo branches instead of local submodules
-  options("spades.test.modules" = c(
-    CBM_core        = "PredictiveEcology/CBM_core@development",
-    CBM_defaults    = "PredictiveEcology/CBM_defaults@development",
-    CBM_vol2biomass = "PredictiveEcology/CBM_vol2biomass@development",
-    CBM_dataPrep_SK = "PredictiveEcology/CBM_dataPrep_SK@development"
-  ))
 
   # Suppress warnings from calls to setupProject, simInit, and spades
   options("spades.test.suppressWarnings" = TRUE)
