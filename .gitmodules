@@ -10,3 +10,6 @@
 [submodule "modules/CBM_defaults"]
 	path = modules/CBM_defaults
 	url = https://github.com/PredictiveEcology/CBM_defaults.git
+[submodule "modules/CBM_dataPrep"]
+	path = modules/CBM_dataPrep
+	url = https://github.com/PredictiveEcology/CBM_dataPrep.git
