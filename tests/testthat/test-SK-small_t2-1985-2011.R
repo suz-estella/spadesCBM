@@ -25,6 +25,8 @@ test_that("SK-small 1985-2011", {
 
     SpaDES.project::setupProject(
 
+      times = times,
+
       modules = c(
         paste0("PredictiveEcology/CBM_defaults@",    Sys.getenv("BRANCH_NAME")),
         paste0("PredictiveEcology/CBM_dataPrep_SK@", Sys.getenv("BRANCH_NAME")),
@@ -32,8 +34,6 @@ test_that("SK-small 1985-2011", {
         paste0("PredictiveEcology/CBM_vol2biomass@", Sys.getenv("BRANCH_NAME")),
         paste0("PredictiveEcology/CBM_core@",        Sys.getenv("BRANCH_NAME"))
       ),
-
-      times   = times,
       paths   = list(
         projectPath = projectPath,
         modulePath  = spadesTestPaths$modulePath,
@@ -69,6 +69,7 @@ test_that("SK-small 1985-2011", {
       ))
     )
   )
+  simInitInput$loadOrder <- simInitInput$modules
 
   # Run simInit
   simTestInit <- SpaDEStestMuffleOutput(

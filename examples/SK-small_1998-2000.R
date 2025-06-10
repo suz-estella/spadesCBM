@@ -78,6 +78,7 @@
       saveTime = sort(c(times$start, times$start + c(1:(times$end - times$start))))
     ))
   )
+  simSetup$loadOrder <- simSetup$modules
 
   # Run simulation
   simCBM <- SpaDES.core::simInitAndSpades2(simSetup)
