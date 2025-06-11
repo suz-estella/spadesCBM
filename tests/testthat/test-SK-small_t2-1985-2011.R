@@ -69,7 +69,6 @@ test_that("SK-small 1985-2011", {
       ))
     )
   )
-  simInitInput$loadOrder <- simInitInput$modules
 
   # Run simInit
   simTestInit <- SpaDEStestMuffleOutput(

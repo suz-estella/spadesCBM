@@ -63,7 +63,6 @@ out <- SpaDES.project::setupProject(
     saveTime = sort(c(times$start, times$start + c(1:(times$end - times$start))))
   ))
 )
-out$loadOrder <- out$modules
 
 # Run
 simMngedSKsmall <- SpaDES.core::simInitAndSpades2(out)
