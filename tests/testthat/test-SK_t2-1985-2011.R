@@ -31,7 +31,7 @@ test_that("SK 1985-2011", {
         paste0("PredictiveEcology/CBM_defaults@",    Sys.getenv("BRANCH_NAME")),
         paste0("PredictiveEcology/CBM_dataPrep_SK@", Sys.getenv("BRANCH_NAME")),
         paste0("PredictiveEcology/CBM_dataPrep@",    Sys.getenv("BRANCH_NAME")),
-        paste0("PredictiveEcology/CBM_vol2biomass@", Sys.getenv("BRANCH_NAME")),
+        paste0("PredictiveEcology/CBM_vol2biomass_SK@", Sys.getenv("BRANCH_NAME")),
         paste0("PredictiveEcology/CBM_core@",        Sys.getenv("BRANCH_NAME"))
       ),
       paths   = list(
