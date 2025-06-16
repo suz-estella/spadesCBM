@@ -58,6 +58,7 @@ jobs:
          packages: |
           any::testthat
           any::googledrive
+          any::rstudioapi
 
       - uses: PredictiveEcology/actions/install-Require@v0.2
         with:
