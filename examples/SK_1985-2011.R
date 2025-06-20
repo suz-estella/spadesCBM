@@ -7,7 +7,9 @@
   times       <- list(start = 1985, end = 2011)
 
   # Install SpaDES.project
-  install.packages("SpaDES.project", repos = "predictiveecology.r-universe.dev")
+  if (tryCatch(packageVersion("SpaDES.project") < "0.1.1", error = function(x) TRUE)){
+    install.packages("SpaDES.project", repos = "predictiveecology.r-universe.dev")
+  }
 
   # Set up simulation
   simSetup <- SpaDES.project::setupProject(
