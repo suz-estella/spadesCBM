@@ -27,7 +27,7 @@ The functions of the module can be further subdivided into events. These events 
 This function is found at the end of a module's script. This is where default inputs are supplied. For most default inputs in spadesCBM, the module will check if a user has supplied their own input, and if not, will use the default described in the module's `.inputObjects()` call. 
 
 ### Simlist {-}
-Objects cannot be shared across modules unless they are added to the simlist. It is a rich data object that acts like a list or an environment. All ouputs of a module or model are added to this simlist. 
+Objects cannot be shared across modules unless they are added to the simlist. It is a rich data object that acts like a list or an environment. All outputs of a module or model are added to this simlist. 
 
 ### `prepInputs()`
 This function is used to prepare R objects from remote (usually URLs) or local data sources. This enables easily repeatable continuous workflows and facilitates commonly used steps for getting, loading, and processing data. More information on the function and how it can be used with SpaDES-related projects can be found [here](https://predictiveecology.org/training/_book/prepInputs.html). 
@@ -60,7 +60,7 @@ To simplify and optimize our simulations, we group individual pixels into `cohor
 A more in-depth description of cohort groups in spadesCBM can be found [here](https://predictiveecology.github.io/spadesCBM/cbm_core.html#pixel-groups-1). 
 
 ### source_pool and sink_pool
-Every carbon transfers in spadesCBM occurs between two pools. One pool is the source and transfers its carbon to the sink. A specific pool is generally not tied to one or the other and can be a source in one carbon transfer and a sink in another.  in spadesCBM, this is calculated by proportions, with a proportion of one pool moving to another pool, with proportions adding to 1 so that no carbon is lost. 
+Every carbon transfer in spadesCBM occurs between two pools. One pool is the source and transfers its carbon to the sink. A specific pool is generally not tied to one or the other and can be a source in one carbon transfer and a sink in another.  in spadesCBM, this is calculated by proportions, with a proportion of one pool moving to another pool, with proportions adding to 1 so that no carbon is lost. 
 
 ### masterRaster
 In spadesCBM, our study area is defined by the `masterRaster` object. This object can be directly provided as a raster, created from a shapefile, or by any other means. In our example, it is provided as a raster file in our global script. Refer to our [Example](https://predictiveecology.github.io/spadesCBM/example-spadescbm-in-saskatchewan.html#running-the-simulation) chapter to view how it the `masterRaster` is provided in our example. 
@@ -74,5 +74,5 @@ NPP is defined as the amount of CO~2~ removed from the atmosphere and absorbed b
 ### cbmPools
 This table is an output of spadesCBM. It provides carbon in MgC for all cohort groups and pools after each simulation year (or as prescribed if the simulations are very long). 
 
-### Dead Oraganic Matter
+### Dead Organic Matter
 spadesCBM models carbon in the live component of the forest (i.e. trees) and its dead organic matter (DOM). DOM carbon pools in spadesCBM include all snag pools (which include dead stems, bark, branches, stumps) and all organic soil carbon pools. 
