@@ -74,7 +74,7 @@ jobs:
           Require::Install("PredictiveEcology/quickPlot@development (>= 1.0.2.9001)")
 
           # Install SpaDES.core@development
-          Require::Install("PredictiveEcology/SpaDES.core@development")
+          Require::Require("PredictiveEcology/SpaDES.core@development")
           #Require::Install("PredictiveEcology/SpaDES.project@development")
 
           # Authorize Google Drive
