@@ -71,7 +71,7 @@ jobs:
 
           # Install SpaDES
           devtools::install_github("PredictiveEcology/SpaDES.core@development")
-          devtools::install_github("PredictiveEcology/SpaDES.project@development")
+          #devtools::install_github("PredictiveEcology/SpaDES.project@development")
 
           # Authorize Google Drive
           googledrive::drive_auth(path = Sys.getenv("GOOGLE_AUTH"))
