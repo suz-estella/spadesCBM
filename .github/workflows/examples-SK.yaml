@@ -69,9 +69,13 @@ jobs:
       - name: Run examples for SK
         run: |
 
+          ## 2025-05: Install latest quickPlot from Github required by LandR
+          ## Otherwise SpaDES.core will install and load an older version from CRAN first
+          Require::Install("PredictiveEcology/quickPlot@development (>= 1.0.2.9001)")
+
           # Install SpaDES.core@development
-          #Require::Require("PredictiveEcology/SpaDES.core@development")
-          #devtools::install_github("PredictiveEcology/SpaDES.project@development")
+          Require::Install("PredictiveEcology/SpaDES.core@development")
+          #Require::Install("PredictiveEcology/SpaDES.project@development")
 
           # Authorize Google Drive
           googledrive::drive_auth(path = Sys.getenv("GOOGLE_AUTH"))
