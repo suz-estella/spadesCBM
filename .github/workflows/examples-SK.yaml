@@ -70,7 +70,7 @@ jobs:
         run: |
 
           # Install SpaDES
-          devtools::install_github("PredictiveEcology/SpaDES.core@development")
+          Require::Require("PredictiveEcology/SpaDES.core@development")
           #devtools::install_github("PredictiveEcology/SpaDES.project@development")
 
           # Authorize Google Drive
